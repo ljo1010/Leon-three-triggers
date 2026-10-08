@@ -1,0 +1,917 @@
+/* ===== LEON: Three Triggers - Cinematic Stylesheet ===== */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@500;700&family=Noto+Sans+KR:wght@400;700&display=swap');
+
+/* === 시네마틱 레터박스 (위아래 검은 띠) === */
+html::before, html::after {
+    content: "";
+    position: fixed;
+    left: 0; right: 0;
+    height: 80px;
+    background: #000;
+    z-index: 10000;
+    pointer-events: none;
+    box-shadow: 0 0 40px rgba(0,0,0,0.9);
+}
+html::before { top: 0; }
+html::after  { bottom: 0; }
+
+/* === 기본 톤 === */
+body {
+    --content-width: 960px;  /* 본문/HUD/이미지 공통 폭 */
+    background: #0a0a0a;
+    color: #e8e2d5;
+    font-family: 'Special Elite', 'Noto Sans KR', monospace;
+    line-height: 1.85;
+    overflow-x: hidden;
+}
+
+#story {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 6em 2em 7em;  /* 레터박스 침범 방지 */
+}
+
+.passage {
+    font-size: 1.25rem;
+}
+
+/* === 그레인 노이즈 오버레이 === */
+body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/></svg>");
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: overlay;
+    animation: grainShift 0.5s steps(5) infinite;
+}
+@keyframes grainShift {
+    0%   { transform: translate(0, 0); }
+    20%  { transform: translate(-2%, 1%); }
+    40%  { transform: translate(1%, -2%); }
+    60%  { transform: translate(-1%, 2%); }
+    80%  { transform: translate(2%, 1%); }
+    100% { transform: translate(0, 0); }
+}
+
+/* === 비네팅 === */
+body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.9) 100%);
+    pointer-events: none;
+    z-index: 9997;
+}
+
+/* === 시점별 액센트 컬러 === */
+body                     { --accent: #d4a574; }
+body.pov-mathilda        { --accent: #7a9b6e; }
+body.pov-leon            { --accent: #e8e2d5; }
+body.pov-stansfield      { --accent: #5d4e7b; }
+
+/* === 시점 뱃지 (PassageHeader) === */
+.pov-badge {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+    padding-bottom: 0.6em;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    animation: badgeIn 1.5s ease-out forwards;
+}
+@keyframes badgeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 0.8; transform: translateY(0); }
+}
+
+/* === 챕터 타이틀 === */
+.chapter-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin: 1em 0 0.3em;
+    animation: titleIn 3s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+    text-shadow: 0 0 30px rgba(212, 165, 116, 0.3);
+}
+.chapter-subtitle {
+    text-align: center;
+    letter-spacing: 0.5em;
+    color: rgba(232, 226, 213, 0.4);
+    font-size: 0.85rem;
+    margin-bottom: 4em;
+    animation: subtitleIn 2.5s 1s ease-out backwards;
+}
+@keyframes titleIn {
+    0%   { opacity: 0; transform: scale(1.3); filter: blur(30px); letter-spacing: 0.6em; }
+    60%  { opacity: 1; filter: blur(0); }
+    100% { opacity: 1; transform: scale(1); letter-spacing: 0.3em; }
+}
+@keyframes subtitleIn {
+    from { opacity: 0; letter-spacing: 1em; }
+    to   { opacity: 0.6; letter-spacing: 0.5em; }
+}
+
+/* === 본문 페이드 인 === */
+.passage > p {
+    animation: textFadeIn 1.2s ease-out backwards;
+}
+.passage > p:nth-child(1) { animation-delay: 0.1s; }
+.passage > p:nth-child(2) { animation-delay: 0.4s; }
+.passage > p:nth-child(3) { animation-delay: 0.7s; }
+.passage > p:nth-child(4) { animation-delay: 1.0s; }
+.passage > p:nth-child(5) { animation-delay: 1.3s; }
+.passage > p:nth-child(6) { animation-delay: 1.6s; }
+@keyframes textFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === 선택지 버튼 === */
+.passage a.link-internal {
+    display: block;
+    padding: 1em 1.5em;
+    margin: 0.8em 0;
+    border-left: 3px solid var(--accent);
+    background: rgba(255,255,255,0.02);
+    color: #e8e2d5;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-family: 'Special Elite', 'Noto Sans KR', monospace;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+}
+.passage a.link-internal::before {
+    content: "▸ ";
+    color: var(--accent);
+    margin-right: 0.5em;
+    opacity: 0.5;
+    transition: all 0.3s;
+}
+.passage a.link-internal:hover {
+    background: rgba(212, 165, 116, 0.12);
+    padding-left: 2.5em;
+    border-left-color: #d4a574;
+    border-left-width: 5px;
+    color: #fff;
+    box-shadow: -10px 0 20px rgba(212,165,116,0.1);
+}
+.passage a.link-internal:hover::before {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* === 화면 흔들림 (총성/충격) — 기본/약/강 3단 === */
+.shake       { animation: shake 0.6s cubic-bezier(.36,.07,.19,.97); }
+.shake--soft { animation: shakeSoft 0.45s cubic-bezier(.36,.07,.19,.97); }
+.shake--hard { animation: shakeHard 0.7s cubic-bezier(.36,.07,.19,.97); }
+@keyframes shake {
+    0%,100% { transform: translate(0,0); }
+    10% { transform: translate(-12px, 4px) rotate(-0.3deg); }
+    20% { transform: translate(10px, -6px) rotate(0.3deg); }
+    30% { transform: translate(-8px, 8px) rotate(-0.2deg); }
+    40% { transform: translate(6px, -4px); }
+    50% { transform: translate(-5px, 5px); }
+    60% { transform: translate(4px, -3px); }
+    70% { transform: translate(-3px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    90% { transform: translate(-1px, 1px); }
+}
+@keyframes shakeSoft {
+    0%,100% { transform: translate(0,0); }
+    20% { transform: translate(-4px, 2px); }
+    40% { transform: translate(3px, -2px); }
+    60% { transform: translate(-2px, 2px); }
+    80% { transform: translate(2px, -1px); }
+}
+@keyframes shakeHard {
+    0%,100% { transform: translate(0,0); }
+    8%  { transform: translate(-18px, 7px) rotate(-0.5deg); }
+    18% { transform: translate(16px, -9px) rotate(0.5deg); }
+    28% { transform: translate(-14px, 11px) rotate(-0.4deg); }
+    40% { transform: translate(11px, -7px) rotate(0.3deg); }
+    52% { transform: translate(-8px, 6px); }
+    64% { transform: translate(6px, -5px); }
+    76% { transform: translate(-4px, 3px); }
+    88% { transform: translate(2px, -2px); }
+}
+
+/* === 플래시 (총성 순간 화면 번쩍) — 밝기/지속은 매크로가 CSS 변수로 변주 === */
+.flash::before {
+    content: "";
+    position: fixed; inset: 0;
+    background: rgba(255, 240, 220, var(--flash-a, 0.7));
+    z-index: 9999;
+    pointer-events: none;
+    animation: flashOut var(--flash-d, 0.15s) ease-out;
+}
+@keyframes flashOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* === 단서 토스트 === */
+.clue-toast {
+    background: rgba(212, 165, 116, 0.1);
+    border-left: 3px solid #d4a574;
+    padding: 0.7em 1.2em;
+    margin: 1.2em 0;
+    font-size: 0.9rem;
+    color: #d4a574;
+    letter-spacing: 0.05em;
+    animation: toastSlide 0.8s ease-out;
+}
+@keyframes toastSlide {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* === 임계값 선택지 (게이트) === */
+/* 해금된 특별 선택지: 링크 자체는 .link-internal 스타일 + 골드 태그 */
+.gate-choice.gate-unlocked a.link-internal {
+    border-left-color: #d4a574;
+    background: rgba(212, 165, 116, 0.06);
+}
+.gate-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: #d4a574;
+    border: 1px solid rgba(212, 165, 116, 0.5);
+    border-radius: 2px;
+    padding: 0.1em 0.5em;
+    margin-right: 0.6em;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+/* 잠긴 선택지: 회색 비활성 + 요구치 표시 */
+.gate-choice.gate-locked {
+    display: block;
+    padding: 1em 1.5em;
+    margin: 0.8em 0;
+    border-left: 3px solid #444;
+    background: rgba(255,255,255,0.01);
+    color: #6b6b6b;
+    font-family: 'Special Elite', 'Noto Sans KR', monospace;
+    letter-spacing: 0.05em;
+    cursor: not-allowed;
+    user-select: none;
+}
+.gate-tag-locked {
+    color: #8a6d4a;
+    border-color: rgba(138, 109, 74, 0.4);
+}
+
+/* === 소지품 토스트 (단서 토스트 변형) === */
+.item-toast {
+    color: #9db4c0;
+    border-left-color: #9db4c0;
+    background: rgba(157, 180, 192, 0.08);
+}
+
+/* === 선택지 효과 미리보기 태그 === */
+.fx-tag {
+    float: right;
+    margin-left: 1em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: rgba(212, 165, 116, 0.8);
+    white-space: nowrap;
+    font-weight: 500;
+}
+.passage a.link-internal:hover .fx-tag { color: #e8c9a0; }
+/* 잠긴 게이트의 효과 태그는 흐리게 */
+.gate-locked .fx-tag { color: rgba(232, 226, 213, 0.3); }
+
+/* === 청소부의 수칙 (규칙/규율 강조) === */
+.rule {
+    display: block;
+    margin: 1.8em 0;
+    padding: 0.9em 1.4em;
+    border-left: 3px solid var(--accent);
+    border-top: 1px solid rgba(212, 165, 116, 0.15);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.15);
+    background: rgba(212, 165, 116, 0.05);
+    font-family: 'Oswald', 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.14em;
+    color: #e0c49a;
+    font-size: 1.05rem;
+    text-shadow: 0 0 14px rgba(212, 165, 116, 0.2);
+    animation: ruleIn 1.2s ease-out backwards;
+}
+.rule b {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    margin-right: 0.75em;
+    padding-right: 0.75em;
+    border-right: 1px solid rgba(212, 165, 116, 0.35);
+    text-transform: uppercase;
+}
+@keyframes ruleIn {
+    from { opacity: 0; transform: translateX(-12px); letter-spacing: 0.4em; }
+    to   { opacity: 1; transform: translateX(0); letter-spacing: 0.14em; }
+}
+
+/* === 배드엔딩 태그 (가볍게) === */
+.bad-ending {
+    text-align: center;
+    margin: 1.8em 0 1em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: #9a3b3b;
+    opacity: 0;
+    animation: badEndingIn 1.6s ease-out forwards;
+}
+.bad-ending::before { content: "✖ "; opacity: 0.7; }
+@keyframes badEndingIn {
+    from { opacity: 0; letter-spacing: 0.9em; }
+    to   { opacity: 0.85; letter-spacing: 0.45em; }
+}
+
+/* === 디버그 패널 === */
+.debug-panel {
+    background: rgba(139, 26, 26, 0.08);
+    border: 1px dashed #8b1a1a;
+    padding: 1.5em;
+    font-size: 0.9rem;
+}
+.debug-link {
+    position: fixed;
+    bottom: 100px; right: 1em;
+    background: #8b1a1a;
+    padding: 0.3em 0.8em;
+    z-index: 10001;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+.debug-link:hover { opacity: 1; }
+.debug-link a { color: #fff !important; text-decoration: none; }
+
+/* === 모바일 대응 === */
+@media (max-width: 768px) {
+    html::before, html::after { height: 50px; }
+    #story { padding: 4em 1.5em 5em; }
+    .passage { font-size: 1.1rem; }
+    .chapter-title { font-size: 3rem; letter-spacing: 0.2em; }
+    .debug-link { bottom: 70px; }
+    #sound-toggle { bottom: 70px; }
+}
+
+/* ===== 사이드바는 유지 + 본문 화면 정중앙 고정 ===== */
+
+/* 사이드바 자체는 정상 작동하게 두되, 누아르 톤만 입힘 */
+#ui-bar {
+    background: rgba(5, 5, 5, 0.95);
+    border-right: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+/* ===== 사이드바 토글 — 확실히 잘 보이게 ===== */
+#ui-bar-toggle {
+    position: fixed !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 44px !important;
+    height: 70px !important;
+    background: rgba(212, 165, 116, 0.15) !important;
+    border: 2px solid #d4a574 !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: #d4a574 !important;
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.4), inset 0 0 10px rgba(212, 165, 116, 0.1) !important;
+    transition: all 0.3s !important;
+    z-index: 10003 !important;
+    opacity: 1 !important;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.5rem !important;
+}
+#ui-bar-toggle:hover {
+    background: rgba(212, 165, 116, 0.35) !important;
+    box-shadow: 0 0 30px rgba(212, 165, 116, 0.7), inset 0 0 15px rgba(212, 165, 116, 0.2) !important;
+    width: 50px !important;
+    color: #fff !important;
+}
+#ui-bar-toggle::before {
+    color: inherit !important;
+    font-size: 1.6rem !important;
+}
+
+/* 사이드바 열렸을 때 토글 위치 */
+body.stowed #ui-bar-toggle {
+    left: 12px !important;
+}
+
+/* 사이드바 내부 텍스트 톤 */
+#ui-bar a, #ui-bar button {
+    color: #e8e2d5;
+    transition: color 0.3s;
+}
+#ui-bar a:hover, #ui-bar button:hover {
+    color: var(--accent);
+}
+
+#story-title {
+    color: var(--accent);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.2em;
+    font-size: 0.95rem;
+    display: none;
+}
+
+/* === 핵심: 본문을 viewport 정중앙에 고정 === */
+/* 사이드바가 열리든 닫히든 본문은 항상 화면 가운데 */
+#story {
+    position: fixed !important;
+    top: 8.5em;            /* HUD(90~132px) 아래에서 시작 → 겹침 방지 */
+    bottom: 5.5em;         /* 하단 레터박스 위에서 끝 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: var(--content-width);
+    overflow-y: auto;
+    margin: 0 !important;
+    padding-top: 1.5em !important;
+    /* 짧은 본문은 중앙 정렬 유지, 긴 본문은 위에서부터 스크롤(safe) */
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+}
+
+/* 스크롤바 스타일 */
+#story::-webkit-scrollbar {
+    width: 6px;
+}
+#story::-webkit-scrollbar-track {
+    background: transparent;
+}
+#story::-webkit-scrollbar-thumb {
+    background: rgba(212, 165, 116, 0.2);
+    border-radius: 3px;
+}
+#story::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 165, 116, 0.4);
+}
+
+/* ===== 상단 HUD (시점 + 스탯 + 단서) ===== */
+#hud {
+    position: fixed;
+    top: 90px;  /* 레터박스 아래 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: var(--content-width);
+    z-index: 9996;
+    pointer-events: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6em 1.2em;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.15);
+    color: rgba(232, 226, 213, 0.6);
+    opacity: 0;
+    animation: hudFadeIn 2s 1s ease-out forwards;
+}
+@keyframes hudFadeIn {
+    to { opacity: 1; }
+}
+
+.hud-pov {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.4em;
+}
+.hud-stats {
+    display: flex;
+    gap: 1em;
+    font-size: 0.78rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.hud-group {
+    display: flex;
+    gap: 1.1em;
+}
+.hud-sep {
+    color: rgba(232, 226, 213, 0.25);
+}
+/* 기본(상대 인물): 흐리게 */
+.hud-stat {
+    color: rgba(232, 226, 213, 0.35);
+}
+.hud-stat-value {
+    color: rgba(232, 226, 213, 0.45);
+    margin-left: 0.35em;
+    font-weight: 700;
+}
+/* 현재 시점 인물: 밝게 + 액센트 */
+.hud-stat-active {
+    color: rgba(232, 226, 213, 0.6);
+}
+.hud-stat-active .hud-stat-value {
+    color: var(--accent);
+}
+.hud-clues {
+    color: #d4a574;
+    font-weight: 700;
+}
+.hud-clues-count {
+    color: #fff;
+    margin-left: 0.4em;
+}
+
+/* 사운드 ON/OFF 토글 */
+#sound-toggle {
+    position: fixed;
+    bottom: 100px;
+    left: 1em;
+    background: rgba(212, 165, 116, 0.15);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    z-index: 10003;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+#sound-toggle:hover {
+    background: rgba(212, 165, 116, 0.35);
+    transform: scale(1.1);
+}
+
+/* ===== 라이트박스 (클릭 시 확대) ===== */
+.scene-image, .clue-image, .character-portrait { cursor: zoom-in; }
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.93);
+    z-index: 10010;            /* 레터박스(10000)보다 위 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vh 4vw;
+    cursor: zoom-out;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.lightbox-overlay.show { opacity: 1; }
+.lightbox-img {
+    max-width: 92vw;
+    max-height: 92vh;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.95) contrast(1.05) saturate(0.95);
+    transform: scale(0.96);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.lightbox-overlay.show .lightbox-img { transform: scale(1); }
+.lightbox-overlay::after {
+    content: "✕  클릭 또는 ESC";
+    position: fixed;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(232, 226, 213, 0.5);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    pointer-events: none;
+}
+
+/* ===== 단서 목록 모달 (alert 대체) ===== */
+.clue-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(3px);
+    z-index: 10010;            /* 레터박스(10000)보다 위 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 5vw;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.clue-modal-overlay.show { opacity: 1; }
+.clue-modal {
+    position: relative;
+    width: min(520px, 90vw);
+    max-height: 84vh;
+    overflow-y: auto;
+    background: linear-gradient(170deg, #15130f 0%, #0c0b09 100%);
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    border-top: 3px solid var(--accent);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
+    padding: 1.8em 2em 1.6em;
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.clue-modal-overlay.show .clue-modal { transform: translateY(0) scale(1); }
+.clue-modal-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    padding-bottom: 0.9em;
+    margin-bottom: 0.9em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.clue-modal-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    color: var(--accent);
+}
+.clue-modal-count {
+    margin-left: auto;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: #0c0b09;
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 0.1em 0.7em;
+}
+.clue-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.clue-row {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 0.7em 0.2em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: clueRowIn 0.35s ease forwards;
+}
+.clue-row:last-child { border-bottom: none; }
+@keyframes clueRowIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+.clue-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    opacity: 0.65;
+    min-width: 1.8em;
+    text-align: right;
+}
+.clue-text {
+    color: #e8e2d5;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.clue-modal-close {
+    display: block;
+    margin: 1.4em 0 0 auto;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    border-radius: 2px;
+    padding: 0.5em 1.3em;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+.clue-modal-close:hover {
+    background: var(--accent);
+    color: #0c0b09;
+}
+
+/* ===== 소품 쇼케이스 (몰입형 오브젝트) ===== */
+.prop-fig {
+    margin: 2em auto;
+    text-align: center;
+    max-width: 440px;
+}
+.prop {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    cursor: zoom-in;
+    border: 1px solid rgba(212, 165, 116, 0.35);
+    border-radius: 2px;
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.45),
+                0 16px 44px rgba(0, 0, 0, 0.6),
+                0 0 60px rgba(212, 165, 116, 0.08);
+    filter: brightness(0.9) contrast(1.08) saturate(0.92);
+    animation: propIn 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+.prop-fig figcaption {
+    margin-top: 0.9em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(212, 165, 116, 0.65);
+}
+.prop-fig figcaption::before { content: "— "; }
+.prop-fig figcaption::after  { content: " —"; }
+@keyframes propIn {
+    from { opacity: 0; transform: scale(0.9); filter: blur(10px) brightness(0.4); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ===== 이미지 시스템 ===== */
+
+/* 풀스크린 이미지 (씬 전환용) */
+.scene-image {
+    width: 100%;
+    max-width: var(--content-width);
+    height: auto;
+    margin: 1.5em 0;
+    border-radius: 2px;
+    filter: brightness(0.85) contrast(1.1) saturate(0.9);  /* 영화 톤 */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    animation: imageFadeIn 1.5s ease-out;
+}
+@keyframes imageFadeIn {
+    from { opacity: 0; transform: scale(1.05); filter: brightness(0.5) blur(10px); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* 인물 클로즈업 이미지 */
+.character-portrait {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    margin: 1em auto;
+    display: block;
+    filter: grayscale(0.4) contrast(1.1);
+    box-shadow: 0 0 30px rgba(212, 165, 116, 0.3);
+}
+
+/* 풀스크린 배경 이미지 (특정 패시지에) */
+.scene-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.4) contrast(1.2) saturate(0.7);
+    animation: bgFadeIn 2s ease-out;
+}
+@keyframes bgFadeIn {
+    from { opacity: 0; transform: scale(1.1); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* QR 코드 (온라인 플레이 링크) — 흰 배경 유지, 시네마틱 필터 미적용, 선명하게 */
+.qr-image {
+    display: block;
+    width: 150px;
+    height: auto;
+    margin: 0.9em auto 0.4em;
+    background: #fff;
+    padding: 6px;
+    border-radius: 4px;
+    image-rendering: pixelated;       /* 모듈을 또렷하게(스캔 정확도↑) */
+    cursor: zoom-in;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+
+/* 단서 이미지 (작게) */
+.clue-image {
+    width: 150px;
+    border: 1px solid var(--accent);
+    margin: 0.5em;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.clue-image:hover {
+    transform: scale(1.5);
+    z-index: 100;
+    position: relative;
+}
+
+/* === 접근성: 광과민/모션 민감 사용자 대응 ===
+   OS의 "동작 줄이기" 설정이 켜져 있으면 번쩍임·흔들림·깜빡임을 끈다.
+   서사 진행에 필요한 페이드는 즉시 표시로 대체(콘텐츠 손실 없음). */
+@media (prefers-reduced-motion: reduce) {
+    /* 필름 그레인: 정적 텍스처는 유지하되 깜빡임만 정지 */
+    body::before { animation: none !important; }
+
+    /* 흰 화면 플래시(총성) 완전 제거 */
+    .flash::before { animation: none !important; background: transparent !important; }
+
+    /* 화면 흔들림 제거 (기본/약/강 모두) */
+    .shake, .shake--soft, .shake--hard { animation: none !important; }
+
+    /* 나머지 모든 연출 애니메이션: 움직임 없이 최종 상태로 즉시 표시 */
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* === 폴라로이드 사진 프레임 (엔딩 키프세이크 컷) ===
+   <div class="polaroid"><img class="scene-image" src="..."></div>
+   흰 인화지 테두리 + 두꺼운 아래 여백 + 살짝 기운 스냅샷 + 그림자. */
+.polaroid {
+    display: block;
+    width: min(74%, 480px);
+    margin: 2.4em auto 2.8em;
+    padding: 4.5% 4.5% 15%;
+    background: #f7f2e8;                         /* 빛바랜 인화지 */
+    background-image:
+        linear-gradient(155deg, rgba(255,255,255,0.5), rgba(214,202,178,0.25));
+    border-radius: 3px;
+    box-shadow:
+        0 16px 38px rgba(0,0,0,0.62),
+        0 4px 12px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.35);
+    transform: rotate(-2.2deg);
+    transition: transform 0.4s ease;
+    position: relative;
+}
+.polaroid:hover { transform: rotate(0deg) scale(1.015); }   /* 가볍게 펴짐 */
+
+/* 폴라로이드 안의 사진: scene-image의 전체폭/그림자/여백을 덮어쓴다 */
+.polaroid .scene-image {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35) inset;
+    filter: brightness(0.93) contrast(1.04) saturate(0.95) sepia(0.07);  /* 인화 톤 */
+    animation: polaroidIn 1.3s ease-out;
+}
+@keyframes polaroidIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* 모바일: 폭 넓히고 기울기 약하게 */
+@media (max-width: 768px) {
+    .polaroid { width: 86%; transform: rotate(-1.4deg); padding-bottom: 16%; }
+}
+
+/* ★ 모바일 컨트롤 배치 (최우선 — 파일 맨 끝이라 모든 base 규칙을 소스 순서로 이김)
+   사운드 / 사이드바(저장·불러오기) 토글이 본문을 가리던 문제 해결:
+   둘 다 하단 레터박스(검은 띠) 위 양쪽 코너로 보내 본문과 절대 겹치지 않게 함. */
+@media (max-width: 768px) {
+    /* 사이드바 본문: 닫혔을 땐 33px 삐짐 없이 완전히 숨기고, 열었을 때만 화면에 표시.
+       (토글은 우하단으로 옮겼으므로 좌측에 띠를 남길 이유가 없음) */
+    #ui-bar { transition: left 0.3s ease !important; }
+    body.stowed #ui-bar { left: -320px !important; }
+    body:not(.stowed) #ui-bar { left: 0 !important; width: 82% !important; max-width: 300px !important; }
+
+    #sound-toggle {
+        bottom: 5px !important;
+        left: 12px !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: rgba(10, 10, 10, 0.88) !important;
+    }
+    #ui-bar-toggle,
+    body.stowed #ui-bar-toggle {
+        top: auto !important;
+        bottom: 5px !important;
+        left: auto !important;
+        right: 12px !important;
+        transform: none !important;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        font-size: 1.2rem !important;
+        background: rgba(10, 10, 10, 0.88) !important;
+    }
+}

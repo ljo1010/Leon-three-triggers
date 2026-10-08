@@ -1,0 +1,131 @@
+:: Stansfield_00_Aftermath [stansfield] {"position":"450,3490","size":"100,100"}
+<<set $stansfield.cruelty += 1>>
+<<bgm "stansfield">>
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;color:#5d4e7b;">
+— 같은 밤. 스탠스필드 —
+</div>
+
+<img class="scene-image" src="images/office_night.png" alt="">
+
+순식간이었다. 유리가 깨지고 그림자 하나가 계집아이를 낚아채 어둠 속으로 사라졌다. 부하들은 총을 쏘고도 허공만 맞혔다.
+
+스탠스필드는 한참을 그 자리에 서 있었다. 도시 전체를 떨게 하는 사내가 — 청소부 하나에게 손안의 것을 빼앗겼다.
+
+<<if $endingFlags.stansfieldWounded>>\
+<<set $stansfield.cruelty += 1>>\
+그는 으스러진 오른손을 왼손으로 감싸 쥐었다. 통증보다 견딜 수 없는 건 그 손이 다시는 예전 같지 않으리란 사실이었다. 평생 방아쇠를 당겨 온 손.
+<<else>>\
+그는 텅 빈 두 손을 천천히 내려다봤다. 움켜쥐었다고 믿은 순간 빠져나간 것.
+<</if>>\
+
+분노는 아니었다. 분노는 아마추어의 몫이다. 그에게 차오른 건 — 더 차갑고 더 사적인 무엇이었다.
+
+청소부는 흔적을 남기지 않는다. 하지만 모든 인간에겐 끝내 지키려는 단 하나가 있다. 방금 그 사내가 품에 안고 사라진 계집아이처럼.
+
+스탠스필드는 천천히 돌아선다. 서두르지 않는다. 사냥은 — 이제부터다.
+
+[[그는 자신의 사무실로 돌아간다|Stansfield_01]]
+
+
+:: Stansfield_01 [stansfield] {"position":"450,3600","size":"100,100"}
+<<set $stansfield.high += 3>>
+<<set $stansfield.cruelty += 1>>
+<<bgm "stansfield">>
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;color:#5d4e7b;">
+— 같은 시각. 스탠스필드 —
+</div>
+
+<img class="scene-image" src="images/stansfield_desk.png" alt="">
+
+스탠스필드는 알약 두 개를 혀 위에 올린다. 삼키지 않고 잠시 굴린다.
+
+이어폰에서 베토벤이 흐른다. 그는 눈을 감는다.
+
+<<type 30ms>>"······나는 이 순간이 좋아. 폭풍이 오기 직전의 이 조용한 순간."<</type>>
+
+그 집의 가장은 영리하지 못했다. 그가 보관하던 스탠스필드의 물건 — 코카인 — 에서 매번 조금씩이 비어 있었다.
+
+누군가는 대가를 치러야 했다. 그래서 온 가족이 치렀다. 사업이란 원래 그런 것이다.
+
+책상 위 압수한 권총 한 자루. 그리고 열두 살짜리 계집아이 하나. 그 옆 청소부의 흔적.
+
+그가 눈을 뜬다. 동공이 풀려 있다.
+
+<<if $endingFlags.stansfieldWounded>>\
+<<set $stansfield.cruelty += 2>>\
+붕대를 감은 오른손이 부들부들 떨린다. 그 청소부가 으스러뜨린 손. 평생 방아쇠를 당겨 온 손.
+
+이건 더 이상 일이 아니다. 이건 — 갚아야 할 빚이다.
+<</if>>\
+
+"그 아파트의 청소부였군. 좋아."
+
+하지만 청소부는 흔적을 남기지 않는다. 그가 어디 사는지 아는 사람은 — 이 도시에 단 하나뿐이다.
+
+[[리틀 이탈리아로 간다|Stansfield_02_Tony]]
+
+
+:: Stansfield_02_Tony [stansfield] {"position":"600,3600","size":"100,100"}
+<<set $stansfield.cruelty += 1>>
+<img class="scene-image" src="images/tony_restaurant_night.png" alt="">
+
+리틀 이탈리아. 토니의 식당. 간판 불은 꺼졌고 의자들은 테이블 위에 거꾸로 올려져 있다.
+
+스탠스필드는 초대받지 않은 손님처럼 들어선다. 베토벤은 아직 귓속에 흐른다.
+
+<img class="scene-image" src="images/stansfield_tony.png" alt="">
+
+그는 묻지도 않고 토니의 맞은편에 앉는다.
+
+"청소부 하나를 찾고 있어. 우유를 마시고, 화분을 키우고 — 글을 못 읽는 남자."
+
+<figure class="prop-fig"><img class="prop" src="images/tony_hands_newspaper.png" alt=""><figcaption>토니의 손</figcaption></figure>
+
+토니의 손이 신문 위에서 멈춘다. 오랫동안 그 남자의 돈을 '보관'해 온 손.
+
+<<type 30ms>>"······그런 사람, 모릅니다."<</type>>
+
+[[스탠스필드가 천천히 미소짓는다|Stansfield_03_Tony]]
+
+
+:: Stansfield_03_Tony [stansfield] {"position":"750,3600","size":"100,100"}
+<<set $stansfield.cruelty += 1>>
+스탠스필드가 웃는다. 그리고 안주머니에서 사진 한 장을 꺼내 식탁 위에 내려놓는다.
+
+<figure class="prop-fig"><img class="prop" src="images/prop_family_photo.png" alt=""><figcaption>토니의 가족</figcaption></figure>
+
+토니의 딸. 사위. 그리고 — 일곱 살, 다섯 살. 손주 둘.
+
+스탠스필드는 검지 끝으로 아이들의 얼굴을 하나씩 톡, 톡 짚는다. 다정하게.
+
+<<type 30ms>>"이 녀석들 매일 아침 여덟 시 십오 분에 모퉁이에서 노란 버스를 타더군. 둘 다 앞니가 빠졌고."<</type>>
+
+토니의 얼굴에서 핏기가 가신다.
+
+그 순간 스탠스필드가 식탁 위로 몸을 확 기울인다. 의자가 끌리고 약에 풀렸던 눈이 칼날처럼 또렷해진다.
+
+<<type 30ms>>"나는 폭풍 직전의 이 조용한 순간이 좋아, 토니. 그러니까 — 나한테 폭풍을 부르게 하지 마."<</type>>
+
+그가 사진을 손바닥으로 천천히 눌러 식탁에 으깨듯 문지른다.
+
+<<type 35ms>>"주소 하나면, 일요일은 계속 일요일이야. 망설이면 — 다음 일요일은 없어. 손주도, 딸도, 이 가게도. 전부."<</type>>
+
+<img class="scene-image" src="images/tony_defeated.png" alt="">
+
+긴 침묵. 식탁 아래에서 토니의 두 손이 떨린다. 평생 단 한 번도 입을 연 적 없던 핸들러가 처음으로 늙어 보인다.
+
+그가 눈을 감는다. 그리고 아주 작게 — 주소 하나를 말한다. 자식들을 위해 청소부를 판다.
+
+<<flag "tonyTalked">>
+
+<img class="scene-image" src="images/stansfield_radio.png" alt="">
+
+스탠스필드가 몸을 일으킨다. 사진을 도로 주머니에 넣고 토니의 어깨를 가볍게 두드린다. 위로하듯.
+
+<<type 35ms>>"현명해. 가족이 먼저지."<</type>>
+
+그리고 무전기를 든다.
+
+<<type 40ms>>"전원. 한 명도 빼지 마. ''전원'' 그 건물로."<</type>>
+
+[[그 시각 레옹은 —|Leon_17_Siege]]

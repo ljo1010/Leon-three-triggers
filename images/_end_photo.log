@@ -1,0 +1,13 @@
+[23:56:58] [1/1] Generating (gpt-image-2): end_photo.png
+[23:56:58] [1/1] HTTP 401: {
+  "error": {
+    "message": "Incorrect API key provided: sk-proj-********************************************************************************************************************************************************tjwA. You can find your API key at https://platform.openai.com/account/api-keys.",
+    "type": "invalid_request_error",
+    "code": "invalid_api_key",
+    "param": null
+  },
+  "stat
+[23:56:58] === Done ===
+[23:58:34] [1/1] Generating (gpt-image-2): end_photo.png
+[00:00:44] [1/1] OK (129.9s, 2308KB) -> C:\Users\이재욱\Downloads\LEON\images\end_photo.png
+[00:00:44] === Done ===

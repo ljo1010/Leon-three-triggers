@@ -1,0 +1,202 @@
+:: Mathilda_01_Hallway [mathilda] {"position":"650,1250","size":"100,100"}
+<<set $perspective to "mathilda">>
+<<bgm "tense">>
+
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— 한 시간 전. 같은 건물. 4층 —
+</div>
+
+<img class="character-portrait" src="images/mathilda_portrait.png" alt="">
+
+<img class="scene-image" src="images/mathilda_hallway.png" alt="">
+
+심부름을 다녀오는 길이었다. 아빠가 우유를 사 오라고 했다 — 어쩌면 나를 잠깐 밖으로 내보내려는 핑계였는지도 모른다.
+
+봉지를 들고 계단을 올라오는데 복도의 형광등이 깜빡인다.
+
+그리고 보았다. 우리 집 문 앞에 늘어선 낯선 구두들. 비싼 가죽. 검은 양복. 그 사람들이 또 왔다. 하지만 이번엔 — 공기가 달랐다.
+
+201호. 우리 집 문 앞에서 발소리가 멈췄다.
+
+요즘 아빠는 그 사람들의 물건을 맡아 두고 있었다. 흰 가루가 든 가방들. 나는 모른 척했다. 그게 어떤 사람들인지 모른 척하는 게 사는 길이었으니까.
+
+<<timed 1.5s>>
+<<gunshot "shotgun">>
+총소리가 났다. 한 번. 두 번. 세 번.
+
+<<next 4s>>
+엄마의 비명. 짧게 끊겼다.
+
+나는 우유 한 팩을 손에 든 채 계단참에 서 있다. 12살. 가방 안엔 네 살배기 남동생에게 줄 인형. 이 집에서 내가 사랑하는 단 하나.
+
+<figure class="prop-fig"><img class="prop" src="images/prop_doll.png" alt=""><figcaption>동생의 인형</figcaption></figure>
+
+<<next 7s>>
+복도 끝 옆집 202호의 문이 살짝 열려 있다. 그 안에 누군가 산다는 건 알지만 본 적은 없다.
+
+<<next 9.5s>>
+<<pick "Mathilda_01_KnockDoor" "202호 문을 두드린다" "신뢰 +2">>
+<<pick "Mathilda_01_Hide" "숨어서 지켜본다" "분노 +1">>
+<<pick "Mathilda_01_Run" "그냥 도망친다" "분노 +2 · 신뢰 −1">>
+<</timed>>
+
+
+:: Mathilda_01_KnockDoor [mathilda] {"position":"475,1425","size":"100,100"}
+<<set $mathilda.trust += 2>>
+
+<img class="scene-image" src="images/mathilda_knock.png" alt="">
+
+심장이 터질 것 같다. 하지만 다리가 먼저 움직인다.
+
+복도를 천천히 걷는다. 한 발, 한 발.
+
+202호 앞. 문틈으로 흘러나오는 빛. 그리고 — 식물 향기?
+
+나는 손을 들어 문을 두드린다.
+
+<<sfx "door_knock">><<type 100ms>>똑. 똑. 똑.<</type>>
+
+<<type 40ms>>"...제발요. 살려주세요."<</type>>
+
+문이 열린다. 어둠 속에서 — 우유빛 셔츠. 검은 안경. 한 남자가 나를 본다.
+
+그의 손에는 화분이 들려 있다. 다른 손에는 — 보지 않는 게 좋겠다.
+
+[[그의 눈을 똑바로 본다|Mathilda_01_End]]
+
+
+:: Mathilda_01_Hide [mathilda] {"position":"600,1425","size":"100,100"}
+<<set $mathilda.rage += 1>>
+
+<img class="scene-image" src="images/mathilda_hide_pov.png" alt="">
+
+다리가 움직이지 않는다.
+
+<figure class="prop-fig"><img class="prop" src="images/clue_milk.png" alt=""><figcaption>쏟아진 우유</figcaption></figure>
+비상구 계단 뒤로 몸을 숨긴다. 우유팩을 떨어뜨린다. 흰 액체가 콘크리트 바닥에 번진다.
+
+<<timed 2s>>
+문이 열린다. 검은 양복의 남자들. 그들 가운데 한 명이 — 콧노래를 흥얼거린다. 클래식 곡. 베토벤인 것 같다.
+
+<<next 5s>>
+그의 얼굴을 본다. ''잊지 않을 것이다.''
+
+<img class="character-portrait" src="images/stansfield_face.png" alt="">
+
+<<clue "스탠스필드의 얼굴">>
+
+<<next 8s>>
+그들이 떠난 뒤 나는 한참을 그 자리에 앉아 있었다.
+
+복도 끝 202호의 문은 아주 살짝 열려 있다.
+<</timed>>
+
+[[그 문 앞으로 간다|Mathilda_01_End]]
+
+
+:: Mathilda_01_Run [mathilda] {"position":"725,1425","size":"100,100"}
+<<set $mathilda.rage += 2>>
+<<set $mathilda.trust -= 1>>
+
+생각보다 몸이 먼저 움직인다.
+
+계단을 뛰어 내려간다. 우유팩이 굴러 떨어진다. 시야가 흔들린다.
+
+<img class="scene-image" src="images/mathilda_street.png" alt="">
+거리에 나오자 햇빛이 너무 밝다. 사람들의 얼굴이 너무 평범하다.
+
+이 도시 어디에도 내가 갈 곳은 없다.
+
+[[다시 그 건물을 올려다본다|Mathilda_01_End]]
+
+
+:: Mathilda_01_End [mathilda] {"position":"600,1600","size":"100,100"}
+<<bgm "mathilda">>\
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— END OF MATHILDA: INTERLUDE —
+</div>
+
+<img class="scene-image" src="images/mathilda_mourning.png" alt="">
+
+<img class="scene-image" src="images/mathilda_lookup_building.png" alt="">
+
+이날의 기억은 여기서 끊긴다.
+
+<<if $endingFlags.openedDoor>>
+그리고 한 시간 뒤 나는 옆집의 문을 두드릴 것이다.
+
+<<pick "Leon_06_Training" "레옹의 방 안으로" "신뢰 +1">>
+<<elseif $endingFlags.closedDoor>>
+그리고 한 시간 뒤 나는 옆집 문을 두드렸다. 아무도 열어주지 않았다.
+
+이 도시에 나를 받아줄 문은 없었다.
+
+<<timed 2.5s>>
+<div class="bad-ending">BAD ENDING — 닫힌 문</div>
+
+[[다시 선택한다|Leon_04_Door][$leon.discipline -= 2; $leon.attachment += 2; $endingFlags.closedDoor to false]]
+<</timed>>
+<<else>>
+다시 레옹의 시점으로 돌아간다.
+
+[[문 앞으로 돌아가기|Leon_04_Door]]
+<</if>>
+
+
+:: Mathilda_END_School [mathilda] {"position":"100,4700","size":"100,100"}
+<<bgm "stop">>\
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— 에필로그. 마틸다 —
+</div>
+
+<img class="scene-image" src="images/school_office.png" alt="">
+
+언덕 위의 학교. 스펜서. 내가 거짓말을 하고 도망쳐 나왔던 곳.
+
+원장 선생님은 안경 너머로 나를 본다. 차갑게.
+
+"또 무슨 이야기를 지어내려고, 마틸다. 수업료도 내지 않고 사라졌던 아이가."
+
+나는 고개를 젓는다. 이번엔 지어낼 이야기가 없다.
+
+<<type 30ms>>"······저를 돌봐 주던 사람이 있었어요. 글을 못 읽고, 우유를 마시던 사람. 그 사람이 죽었어요. 저 때문에."<</type>>
+
+선생님의 손이 서류 위에서 멈춘다.
+
+"갈 곳이 없어요. 가족도 없고요. 하지만 이젠 도망치지 않을게요. 공부할게요. 여기 있게 해 주세요. ······제발요."
+
+오랜 침묵. 창밖으로 넓은 잔디밭이 펼쳐져 있다.
+
+<<timed 2s>>
+
+선생님이 천천히 안경을 벗는다. 처음으로 나를 거짓말쟁이가 아니라 — 한 아이로 본다.
+
+<<type 40ms>>"······방을 하나 내주마. 짐을 풀렴."<</type>><</timed>>\
+<<timed 4s>>
+
+[[화분을 들고 밖으로 나간다|Mathilda_END_Plant]]
+<</timed>>
+
+
+:: Mathilda_END_Plant [mathilda] {"position":"100,4850","size":"100,100"}
+<<bgm "ending">>\
+<img class="scene-image" src="images/school_planting.png" alt="">
+
+손에는 화분 하나. 레옹의 단 하나뿐인 친구. 뿌리가 없어서 어디든 옮겨 다녀야 했던.
+
+<<timed 2s>>
+
+<figure class="prop-fig"><img class="prop" src="images/clue_plant.png" alt=""><figcaption>화분</figcaption></figure>
+나는 땅을 판다. 작은 구덩이. 그리고 화분에서 그것을 꺼내 처음으로 — 흙에 뿌리를 내려 준다.<</timed>>\
+<<timed 4s>>
+
+<<type 40ms>>"여기선 괜찮을 거예요. 그렇죠, 레옹?"<</type>><</timed>>\
+<<timed 6s>>
+
+바람이 분다. 잎이 흔들린다. 더 이상 떨림이 아니라 — 그냥 살아 있다는 것.
+
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;margin-top:2em;color:#d4a574;">— END: 두 방아쇠 —</div><</timed>>\
+<<timed 8s>>
+
+<<link "처음으로">><<run window.SugarCube.Engine.restart()>><</link>>
+<</timed>>

@@ -1,0 +1,5 @@
+[22:46:10] [1/2] gpt-image-2 mod=low -> siege_street.png
+[22:48:27] [1/2] OK (137.0s)
+[22:48:28] [2/2] gpt-image-2 mod=low -> door_breach.png
+[22:50:37] [2/2] OK (128.3s)
+[22:50:38] === Done 2/2 ===

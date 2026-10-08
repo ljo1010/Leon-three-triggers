@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>LÉON: Three Triggers — Image Forge</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@500;700&family=Noto+Sans+KR:wght@400;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: #0a0a0a;
+    color: #e8e2d5;
+    font-family: 'Special Elite', 'Noto Sans KR', monospace;
+    min-height: 100vh;
+    padding: 2em;
+    line-height: 1.6;
+}
+
+/* 그레인 노이즈 */
+body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/></svg>");
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: overlay;
+}
+
+/* 비네팅 */
+body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none;
+    z-index: 9997;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.3em;
+    color: #d4a574;
+    text-align: center;
+    margin-bottom: 0.2em;
+    text-shadow: 0 0 30px rgba(212, 165, 116, 0.3);
+}
+
+.subtitle {
+    text-align: center;
+    letter-spacing: 0.4em;
+    color: rgba(232, 226, 213, 0.4);
+    font-size: 0.85rem;
+    margin-bottom: 3em;
+    text-transform: uppercase;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+.panel {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    padding: 1.5em;
+}
+
+.panel-title {
+    font-family: 'Oswald', sans-serif;
+    color: #d4a574;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.2em;
+    padding-bottom: 0.6em;
+    border-bottom: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(232, 226, 213, 0.5);
+    margin-bottom: 0.5em;
+    margin-top: 1.2em;
+}
+label:first-of-type { margin-top: 0; }
+
+input[type="text"], input[type="password"], textarea, select {
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    color: #e8e2d5;
+    padding: 0.7em 0.9em;
+    font-family: 'Special Elite', 'Noto Sans KR', monospace;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #d4a574;
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 0 15px rgba(212, 165, 116, 0.1);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.preset-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.preset-btn {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    color: #e8e2d5;
+    padding: 0.6em 0.4em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.preset-btn:hover {
+    background: rgba(212, 165, 116, 0.12);
+    color: #d4a574;
+}
+.preset-btn.active {
+    background: rgba(212, 165, 116, 0.2);
+    color: #d4a574;
+    border-color: #d4a574;
+}
+.preset-btn.leon.active     { background: rgba(232, 226, 213, 0.15); color: #e8e2d5; border-color: #e8e2d5; }
+.preset-btn.mathilda.active { background: rgba(122, 155, 110, 0.2); color: #7a9b6e; border-color: #7a9b6e; }
+.preset-btn.stansfield.active { background: rgba(93, 78, 123, 0.25); color: #a594c4; border-color: #5d4e7b; }
+
+.btn-primary {
+    width: 100%;
+    background: rgba(212, 165, 116, 0.15);
+    border: 2px solid #d4a574;
+    color: #d4a574;
+    padding: 1em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1.5em;
+    transition: all 0.3s;
+}
+.btn-primary:hover:not(:disabled) {
+    background: rgba(212, 165, 116, 0.3);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.3);
+}
+.btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-small {
+    background: transparent;
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    color: rgba(232, 226, 213, 0.7);
+    padding: 0.4em 0.8em;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-small:hover {
+    color: #d4a574;
+    border-color: #d4a574;
+}
+
+.preview-area {
+    min-height: 400px;
+    background: rgba(0,0,0,0.4);
+    border: 1px dashed rgba(212, 165, 116, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+    overflow: hidden;
+}
+
+.preview-area img {
+    max-width: 100%;
+    max-height: 600px;
+    filter: brightness(0.92) contrast(1.08) saturate(0.92);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+.preview-placeholder {
+    color: rgba(232, 226, 213, 0.3);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    padding: 2em;
+}
+
+.status {
+    font-size: 0.8rem;
+    color: rgba(232, 226, 213, 0.5);
+    text-align: center;
+    margin-top: 0.5em;
+    min-height: 1.2em;
+}
+.status.error { color: #c44; }
+.status.ok { color: #7a9b6e; }
+
+.history {
+    margin-top: 2em;
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.8em;
+}
+
+.history-item {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    padding: 0.5em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.history-item:hover {
+    border-color: #d4a574;
+}
+.history-item img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+.history-item .meta {
+    font-size: 0.65rem;
+    color: rgba(232, 226, 213, 0.5);
+    margin-top: 0.4em;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prompt-preview {
+    background: rgba(0,0,0,0.5);
+    border-left: 3px solid #d4a574;
+    padding: 1em;
+    font-size: 0.8rem;
+    color: rgba(232, 226, 213, 0.7);
+    line-height: 1.7;
+    margin-top: 1em;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.row-actions {
+    display: flex;
+    gap: 0.6em;
+    margin-top: 0.8em;
+}
+.row-actions .btn-small { flex: 1; }
+
+.spinner {
+    width: 40px; height: 40px;
+    border: 3px solid rgba(212, 165, 116, 0.2);
+    border-top-color: #d4a574;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+}
+
+.key-row {
+    display: flex;
+    gap: 0.5em;
+    align-items: stretch;
+}
+.key-row input { flex: 1; }
+
+details {
+    margin-top: 1em;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(212, 165, 116, 0.1);
+    padding: 0.8em;
+}
+details summary {
+    cursor: pointer;
+    color: rgba(212, 165, 116, 0.7);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+details[open] summary { margin-bottom: 0.8em; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>IMAGE FORGE</h1>
+<div class="subtitle">— LÉON: Three Triggers —</div>
+
+<div class="grid">
+
+<!-- ===== 좌측: 입력 패널 ===== -->
+<div class="panel">
+    <div class="panel-title">▸ Prompt Configuration</div>
+
+    <label>OpenAI API Key (브라우저에만 저장)</label>
+    <div class="key-row">
+        <input type="password" id="apiKey" placeholder="sk-proj-...">
+        <button class="btn-small" onclick="saveKey()">SAVE</button>
+        <button class="btn-small" onclick="clearKey()">CLEAR</button>
+    </div>
+
+    <label>시점 (Perspective Preset)</label>
+    <div class="preset-row">
+        <button class="preset-btn" data-pov="none">NONE</button>
+        <button class="preset-btn leon" data-pov="leon">LÉON</button>
+        <button class="preset-btn mathilda" data-pov="mathilda">MATHILDA</button>
+        <button class="preset-btn stansfield" data-pov="stansfield">STANSFIELD</button>
+    </div>
+
+    <label>씬 타입 (Scene Type)</label>
+    <select id="sceneType">
+        <option value="environment">환경/배경 (Environment)</option>
+        <option value="portrait">인물 클로즈업 (Portrait)</option>
+        <option value="object">소품/단서 (Object/Clue)</option>
+        <option value="action">액션 씬 (Action)</option>
+        <option value="cinematic">영화적 와이드 (Cinematic Wide)</option>
+    </select>
+
+    <label>당신의 프롬프트 (한글/영문 OK)</label>
+    <textarea id="userPrompt" placeholder="예: 새벽 4시, 좁은 아파트 안. 의자 하나, 화분 하나, 우유팩 하나. 창밖으로 도시의 네온."></textarea>
+
+    <label>크기</label>
+    <select id="size">
+        <option value="1536x1024">와이드 1536×1024 (시네마틱)</option>
+        <option value="1024x1024">정사각 1024×1024</option>
+        <option value="1024x1536">세로 1024×1536 (포스터)</option>
+    </select>
+
+    <label>품질</label>
+    <select id="quality">
+        <option value="high">HIGH (느림, 비쌈, 최고 품질)</option>
+        <option value="medium" selected>MEDIUM (균형)</option>
+        <option value="low">LOW (빠름, 저렴)</option>
+    </select>
+
+    <details>
+        <summary>▸ 최종 프롬프트 미리보기 (생성됨)</summary>
+        <div class="prompt-preview" id="promptPreview">시점/씬타입을 선택하고 프롬프트를 적으세요...</div>
+    </details>
+
+    <button class="btn-primary" id="generateBtn" onclick="generate()">▸ GENERATE</button>
+    <div class="status" id="status"></div>
+</div>
+
+<!-- ===== 우측: 결과 패널 ===== -->
+<div class="panel">
+    <div class="panel-title">▸ Result</div>
+
+    <div class="preview-area" id="preview">
+        <div class="preview-placeholder">
+            이미지가 여기 표시됩니다<br>
+            <small style="opacity:0.5">No image yet</small>
+        </div>
+    </div>
+
+    <div class="row-actions">
+        <button class="btn-small" onclick="downloadImage()">⬇ DOWNLOAD</button>
+        <button class="btn-small" onclick="copyPrompt()">⎘ COPY PROMPT</button>
+        <button class="btn-small" onclick="reroll()">↻ REROLL</button>
+    </div>
+
+    <div class="history">
+        <div class="panel-title" style="margin-top:2em;">▸ History (이번 세션)</div>
+        <div class="history-grid" id="history">
+            <div style="grid-column:1/-1;color:rgba(232,226,213,0.3);font-size:0.8rem;text-align:center;padding:1em;">
+                생성된 이미지가 여기에 누적됩니다
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<script>
+/* ===== 톤앤매너 베이스 프롬프트 ===== */
+const BASE_STYLE = `Film still from a 1994 neo-noir thriller set in Little Italy, New York City. Shot on 35mm film with visible grain, anamorphic lens flare, deep shadows, low-key chiaroscuro lighting. Cinematic letterbox composition, vignetting. Color graded with desaturated warm tones, crushed blacks, slightly faded highlights. Reference: cinematography of Luc Besson's "Léon: The Professional" (1994) by Thierry Arbogast. Practical lighting only — tungsten bulbs, neon signs, window light. No modern elements. No text, no captions, no watermarks.`;
+
+const POV_STYLES = {
+    none: '',
+    leon: ` Color palette dominated by warm cream, beige, dusty olive (#d4a574, #e8e2d5). Quiet, contemplative mood. Composition emphasizes solitude — isolated figures, empty space, single light source. A sense of stillness before violence.`,
+    mathilda: ` Color palette dominated by mossy green, dusty rose, faded yellows (#7a9b6e). Subjective child's-eye-level POV when possible. Mood: vulnerable but defiant, watchful. Slight handheld feel.`,
+    stansfield: ` Color palette dominated by sickly purple, fluorescent magenta, cold cyan shadows (#5d4e7b). Disorienting angles, dutch tilt, harsh shadow patterns. Mood: euphoric menace, hallucinatory edge. Slightly overexposed highlights.`
+};
+
+const SCENE_STYLES = {
+    environment: ` Wide environmental shot. No central character; the space itself is the subject. Architectural details — peeling wallpaper, exposed pipes, single window light.`,
+    portrait: ` Tight character portrait, shallow depth of field, face partially in shadow. Subject is NOT looking directly at camera. Three-quarter angle. Focus on hands or eyes.`,
+    object: ` Macro close-up of a single object on a flat surface. Shallow depth of field. The object tells a story — domestic but loaded with meaning. Soft directional light from one side.`,
+    action: ` Mid-action moment frozen, motion blur on extremities only. Tension in body language. Cropped tightly. No clear resolution visible.`,
+    cinematic: ` Wide cinematic establishing shot, 2.39:1 aspect ratio feel. Architecture and city as character. Negative space. A single small figure dwarfed by environment.`
+};
+
+const NEGATIVE = ` Absolutely no: text overlays, logos, watermarks, signatures, modern smartphones, modern cars (post-1994), digital screens, cartoon style, anime style, 3D render look, glossy CGI, plastic skin, oversaturation, HDR look.`;
+
+/* ===== 상태 ===== */
+let currentPov = 'none';
+let currentImageB64 = null;
+let currentPrompt = '';
+const history = [];
+
+/* ===== 키 관리 ===== */
+function saveKey() {
+    const k = document.getElementById('apiKey').value.trim();
+    if (!k) { setStatus('키를 입력하세요', 'error'); return; }
+    localStorage.setItem('leon_openai_key', k);
+    setStatus('키 저장됨 (이 브라우저에만)', 'ok');
+}
+function clearKey() {
+    localStorage.removeItem('leon_openai_key');
+    document.getElementById('apiKey').value = '';
+    setStatus('키 삭제됨', 'ok');
+}
+function loadKey() {
+    const k = localStorage.getItem('leon_openai_key');
+    if (k) document.getElementById('apiKey').value = k;
+}
+
+/* ===== 프롬프트 조립 ===== */
+function buildPrompt() {
+    const user = document.getElementById('userPrompt').value.trim();
+    const scene = document.getElementById('sceneType').value;
+    if (!user) return '';
+    return BASE_STYLE + POV_STYLES[currentPov] + SCENE_STYLES[scene] + ` Subject: ${user}` + NEGATIVE;
+}
+
+function refreshPreview() {
+    const p = buildPrompt();
+    document.getElementById('promptPreview').textContent = p || '시점/씬타입을 선택하고 프롬프트를 적으세요...';
+}
+
+/* ===== 프리셋 버튼 ===== */
+document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentPov = btn.dataset.pov;
+        refreshPreview();
+    });
+});
+document.querySelector('.preset-btn[data-pov="none"]').classList.add('active');
+
+document.getElementById('userPrompt').addEventListener('input', refreshPreview);
+document.getElementById('sceneType').addEventListener('change', refreshPreview);
+
+/* ===== 상태 표시 ===== */
+function setStatus(msg, type) {
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = 'status' + (type ? ' ' + type : '');
+}
+
+/* ===== 생성 ===== */
+async function generate() {
+    const key = document.getElementById('apiKey').value.trim() || localStorage.getItem('leon_openai_key');
+    if (!key) { setStatus('API 키를 먼저 입력하세요', 'error'); return; }
+
+    const prompt = buildPrompt();
+    if (!prompt) { setStatus('프롬프트를 입력하세요', 'error'); return; }
+
+    const size = document.getElementById('size').value;
+    const quality = document.getElementById('quality').value;
+
+    const btn = document.getElementById('generateBtn');
+    btn.disabled = true;
+    btn.textContent = '▸ GENERATING...';
+    setStatus('OpenAI 호출 중... (10~60초 소요)');
+
+    const preview = document.getElementById('preview');
+    preview.innerHTML = '<div class="spinner"></div>';
+
+    try {
+        const res = await fetch('https://api.openai.com/v1/images/generations', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + key,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'gpt-image-1',
+                prompt: prompt,
+                n: 1,
+                size: size,
+                quality: quality
+            })
+        });
+
+        if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            throw new Error(err.error?.message || `HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        const b64 = data.data[0].b64_json;
+        const dataUrl = 'data:image/png;base64,' + b64;
+
+        currentImageB64 = b64;
+        currentPrompt = prompt;
+
+        preview.innerHTML = `<img src="${dataUrl}" alt="generated">`;
+        addToHistory(dataUrl, prompt);
+
+        setStatus('✓ 생성 완료', 'ok');
+    } catch (e) {
+        preview.innerHTML = '<div class="preview-placeholder" style="color:#c44;">생성 실패<br><small>' + (e.message || e) + '</small></div>';
+        setStatus('에러: ' + (e.message || e), 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '▸ GENERATE';
+    }
+}
+
+/* ===== 다운로드 ===== */
+function downloadImage() {
+    if (!currentImageB64) { setStatus('먼저 이미지를 생성하세요', 'error'); return; }
+    const a = document.createElement('a');
+    a.href = 'data:image/png;base64,' + currentImageB64;
+    const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0,19);
+    const povTag = currentPov === 'none' ? 'scene' : currentPov;
+    a.download = `leon_${povTag}_${ts}.png`;
+    a.click();
+    setStatus('다운로드 됨', 'ok');
+}
+
+/* ===== 프롬프트 복사 ===== */
+function copyPrompt() {
+    if (!currentPrompt) { setStatus('먼저 이미지를 생성하세요', 'error'); return; }
+    navigator.clipboard.writeText(currentPrompt);
+    setStatus('프롬프트 클립보드에 복사됨', 'ok');
+}
+
+/* ===== 리롤 ===== */
+function reroll() {
+    generate();
+}
+
+/* ===== 히스토리 ===== */
+function addToHistory(dataUrl, prompt) {
+    history.unshift({ dataUrl, prompt, time: new Date() });
+    if (history.length > 20) history.pop();
+    renderHistory();
+}
+
+function renderHistory() {
+    const grid = document.getElementById('history');
+    if (history.length === 0) return;
+    grid.innerHTML = history.map((h, i) => `
+        <div class="history-item" onclick="restoreFromHistory(${i})">
+            <img src="${h.dataUrl}" alt="">
+            <div class="meta">${h.time.toLocaleTimeString()}</div>
+        </div>
+    `).join('');
+}
+
+function restoreFromHistory(i) {
+    const h = history[i];
+    document.getElementById('preview').innerHTML = `<img src="${h.dataUrl}" alt="">`;
+    currentImageB64 = h.dataUrl.replace(/^data:image\/png;base64,/, '');
+    currentPrompt = h.prompt;
+    setStatus('히스토리에서 복원됨', 'ok');
+}
+
+/* ===== 초기화 ===== */
+loadKey();
+refreshPreview();
+</script>
+</body>
+</html>

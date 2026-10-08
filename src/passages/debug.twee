@@ -1,0 +1,129 @@
+:: Debug_Jump {"position":"0,400","size":"100,100"}
+<div class="debug-panel">
+
+== 🛠 디버그 메뉴 ==
+
+''현재 상태''
+- 시점: $perspective
+- 마틸다: trust=$mathilda.trust, rage=$mathilda.rage, skill=$mathilda.skill
+- 레옹: attachment=$leon.attachment, discipline=$leon.discipline, suspicion=$leon.suspicion
+- 스탠스필드: high=$stansfield.high, cruelty=$stansfield.cruelty
+- 단서 개수: $clues.length
+- 소지품: <<= $inventory.length ? $inventory.join(", ") : "(없음)">>
+- 엔딩 플래그: <<= Object.keys($endingFlags).length ? Object.keys($endingFlags).join(", ") : "(없음)">>
+
+---
+
+''🎬 챕터 점프 — ACT 1''
+[[프롤로그|Start]]
+[[L-0: 토니의 의뢰|Leon_00_Briefing]]
+[[L-1: 호텔 청부(경호원 제압)|Leon_01_Hit]]
+[[L-1b: 마약상 경고|Leon_01_Warning]]
+[[L-1: 새벽 귀가|Leon_01_Hit_End]]
+[[L-2: 집|Leon_02_Home]]
+[[L-3: 계단의 소녀|Leon_03_Stairs]]
+[[L-3a: 문을 닫는다|Leon_03_Close]]
+[[L-3b: 잠시 더 본다|Leon_03_Watch]]
+[[L-4: 문 앞 결정 (분기)|Leon_04_Door]]
+[[L-5a: 문을 연다 (END ACT1)|Leon_05_Open]]
+[[L-5b: 문을 닫는다 (END ACT1)|Leon_05_Closed]]
+
+''🎬 챕터 점프 — ACT 2''
+[[L-6: 훈련 시작|Leon_06_Training]]
+[[L-7a: 가르친다|Leon_07_Lesson]]
+[[L-7b: 거절한다|Leon_07_Refuse]]
+[[L-8: 다음 날 아침|Leon_08_Morning]]
+[[L-8b: 글 가르치기|Leon_08b_Reading]]
+[[L-9: 토니의 식당|Leon_09_Tony]]
+[[L-10: 토니의 경고|Leon_10_TonyDeal]]
+[[L-10b: 그 애에게 줘|Leon_10_Money]]
+[[L-11: 마틸다의 계획|Leon_11_Plan]]
+[[L-11a: 말린다|Leon_11_Restrain]]
+[[L-11b: 함께 간다|Leon_11_Together]]
+[[L-11c: 진심 고백|Leon_11_Confess]]
+[[L-11b: 옥상 저격 교습|Leon_11b_Sniper]]
+[[L-12: 건물 정찰|Leon_12_Recon]]
+[[L-12a: 혼자 들어간다|Leon_12_Solo]]
+[[L-12b: 망을 맡긴다|Leon_12_Lookout]]
+[[L-13: 잠입|Leon_13_Infiltration]]
+[[L-13a: 함정 간파|Leon_13_Trap]]
+[[L-13b: 계속 들어간다|Leon_13_Push]]
+[[L-14: ACT 2 끝|Leon_14_ActEnd]]
+
+''🎬 챕터 점프 — ACT 3''
+[[L-15: 추격|Leon_15_Pursuit]]
+[[L-16: 구출|Leon_16_Rescue]]
+[[S-0: 구출 직후(스탠스필드)|Stansfield_00_Aftermath]]
+[[S-1: 스탠스필드 시점|Stansfield_01]]
+[[S-2: 토니 심문|Stansfield_02_Tony]]
+[[S-3: 토니 심문(가족 사진)|Stansfield_03_Tony]]
+[[L-17: 포위전 (시작)|Leon_17_Siege]]
+[[L-17b: 어둠 속 교전|Leon_17b_Hold]]
+[[L-17c: 환풍구 작별|Leon_17c_Vent]]
+[[L-18: 마지막 선택|Leon_18_LastChoice]]
+[[END: 희생 1 (탈출 시도)|Leon_END_Sacrifice]]
+[[END: 희생 2 (수류탄)|Leon_END_Sacrifice2]]
+[[END: 우유와 화분|Leon_END_Quiet]]
+[[END: 그림자(복수)|Leon_END_Revenge]]
+[[END: 빚(손목 사격)|Leon_END_Reckoning]]
+[[에필로그: 학교(원장 고백)|Mathilda_END_School]]
+[[에필로그: 화분 심기|Mathilda_END_Plant]]
+
+''인터루드: 마틸다''
+[[M-1: 복도|Mathilda_01_Hallway]]
+[[M-1a: 문 두드림|Mathilda_01_KnockDoor]]
+[[M-1b: 숨음|Mathilda_01_Hide]]
+[[M-1c: 도망|Mathilda_01_Run]]
+[[M-1 끝|Mathilda_01_End]]
+
+''📄 메타''
+[[크레딧 · 제작 노트|Credits]]
+
+---
+
+''⚙️ 스탯 강제 설정''
+
+마틸다:
+<<link "신뢰 +5">><<set $mathilda.trust += 5>><<goto "Debug_Jump">><</link>>
+<<link "분노 +5">><<set $mathilda.rage += 5>><<goto "Debug_Jump">><</link>>
+<<link "스킬 +1">><<set $mathilda.skill += 1>><<goto "Debug_Jump">><</link>>
+
+레옹:
+<<link "애착 +3">><<set $leon.attachment += 3>><<goto "Debug_Jump">><</link>>
+<<link "규율 -3">><<set $leon.discipline -= 3>><<goto "Debug_Jump">><</link>>
+<<link "경계심 +3">><<set $leon.suspicion += 3>><<goto "Debug_Jump">><</link>>
+
+---
+
+''🎁 엔딩 조건 프리셋''
+
+<<link "엔딩 1 조건 (우유와 화분)">>
+    <<set $mathilda.trust = 8>>
+    <<set $leon.discipline = 4>>
+    <<set $leon.attachment = 7>>
+    <<set $endingFlags.openedDoor = true>>
+    <<goto "Debug_Jump">>
+<</link>>
+
+<<link "엔딩 3 조건 (그림자)">>
+    <<set $mathilda.rage = 9>>
+    <<set $leon.attachment = 1>>
+    <<goto "Debug_Jump">>
+<</link>>
+
+---
+
+''🔄 리셋''
+
+<<link "모든 변수 초기화">>
+    <<set $perspective to "leon">>
+    <<set $mathilda to {trust: 0, rage: 0, skill: 0}>>
+    <<set $leon to {attachment: 0, discipline: 10, suspicion: 0}>>
+    <<set $stansfield to {high: 5, cruelty: 0}>>
+    <<set $clues to []>>
+    <<set $inventory to []>>
+    <<set $endingFlags to {}>>
+    <<goto "Debug_Jump">>
+<</link>>
+
+</div>

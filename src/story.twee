@@ -1,0 +1,107 @@
+:: StoryTitle
+LÉON: Three Triggers
+
+
+:: StoryData
+{
+  "ifid": "BDFDF305-E42F-4E5E-B04A-B70FB7BE5DA5",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Start",
+  "tag-colors": {
+    "ACT-1:-LÉON": "purple",
+    "leon": "yellow",
+    "mathilda": "green",
+    "Act1": "purple"
+  },
+  "zoom": 1
+}
+
+
+:: StoryInit {"position":"175,50","size":"100,100"}
+/* ===== 변수 명세 (시스템 설계: SYSTEM.md 참고) =====
+   스탯 = 소프트 게이트(<<gate>>로 특별 선택지 해금). 엔딩 = 플래그 기반(<<flag>>).
+
+   $leon.attachment    애착   0~ : 마틸다에 대한 정. ↑ → 보호/감정 선택지
+   $leon.discipline    규율   10~: 프로 정신. ↑ → 냉정/거절/전술 선택지
+   $leon.suspicion     경계심 0~ : 위협 감지. ↑ → 함정 간파/선제 대응 선택지
+   $mathilda.trust     신뢰   0~ : 레옹을 믿는 정도. ↑ → 협력/고백 선택지
+   $mathilda.rage      분노   0~ : 복수심. ↑ → 무모/폭력 선택지
+   $mathilda.skill     기술   0~ : 훈련 성취도. ↑ → 작전 참여/사격 선택지
+   $stansfield.high    약물   5~ : 도취 상태 (스탠스필드 시점)
+   $stansfield.cruelty 잔혹도 0~ : 잔혹함 (스탠스필드 시점)
+   $clues              []      : 발견 단서 (<<clue>>로 추가)
+   $inventory          []      : 소지품 (<<item>>으로 추가, $inventory.includes()로 체크)
+   $endingFlags        {}      : 엔딩 결정 플래그 (<<flag>>로 누적)             */
+<<set $perspective to "leon">>
+<<set $mathilda to {trust: 0, rage: 0, skill: 0}>>
+<<set $leon to {attachment: 0, discipline: 10, suspicion: 0}>>
+<<set $stansfield to {high: 5, cruelty: 0}>>
+<<set $clues to []>>
+<<set $inventory to []>>
+<<set $endingFlags to {}>>
+
+
+:: Start [Act1] {"position":"500,200","size":"100,100"}
+<img class="scene-image" src="images/title_v3.png" alt="">
+
+<div class="chapter-title">LÉON</div>
+<div class="chapter-subtitle">— Three Triggers —</div>
+
+<img class="scene-image" src="images/nyc_dawn.png" alt="">
+1994년 여름. 뉴욕 리틀 이탈리아.
+
+<img class="scene-image" src="images/nyc_little_italy.png" alt="">
+이 도시에는 이름 없는 청소부가 있다.
+
+그리고 청소부에게 일을 맡기는 사람은 단 하나뿐이다.
+
+[[토니의 식당으로 간다|Leon_00_Briefing]]
+
+<div style="margin-top:2.6em;font-size:0.78em;line-height:1.8;opacity:0.5;letter-spacing:0.02em;">
+※ 총기 폭력 · 약물 · 위기에 처한 아동에 대한 묘사가 포함됩니다.<br>
+[[크레딧 · 제작 노트|Credits]]
+</div>
+
+
+:: Credits {"position":"325,200","size":"100,100"}
+<div class="chapter-subtitle" style="margin-bottom:1.4em;">— 크레딧 · 제작 노트 —</div>
+
+''LÉON: Three Triggers''
+영화 «레옹: 더 프로페셔널»(Léon: The Professional, 1994 · 뤽 베송) 을 기반으로 한
+비영리 학습용 인터랙티브 픽션입니다. 레옹 · 마틸다 · 스탠스필드, 세 시점으로 같은 사건을 통과합니다.
+
+''▶ 온라인 플레이''
+설치 없이 브라우저에서 바로 플레이할 수 있습니다 (모바일 포함):
+[[https://vercelbuild-azure.vercel.app|https://vercelbuild-azure.vercel.app]]
+<div style="text-align:center;margin:0.4em 0 0.2em;"><img class="qr-image" src="images/qr_play.png" alt="플레이 링크 QR 코드"><span style="display:block;font-size:0.78em;opacity:0.55;letter-spacing:0.02em;">QR을 스캔해도 바로 열립니다</span></div>
+
+<div class="rule"><b>콘텐츠 안내</b>총기 폭력, 약물, 위기에 처한 아동에 대한 묘사가 포함됩니다. 노골적 유혈·선정 묘사는 피했으나, 무겁고 어두운 톤이 이어집니다.</div>
+
+''제작 도구''
+· 스토리: Twine 문법 / SugarCube 2.37.3
+· 빌드: Tweego CLI
+
+''이미지''
+모든 삽화는 생성형 AI(OpenAI gpt-image-1 / gpt-image-2)로 제작했습니다.
+실제 영화 스틸이나 배우의 초상은 사용·복제하지 않았으며, 정책상 미성년자·무기·유혈의 직접 묘사는 손·실루엣·POV·정물 등으로 우회했습니다.
+
+''음악 · 사운드''
+· 레옹 테마 — Erik Satie 〈Gymnopédie No.1〉 · CC0 녹음 (Wikimedia Commons)
+· 마틸다 에필로그 — Claude Debussy 〈Clair de Lune〉 · 퍼블릭 도메인 녹음 (Wikimedia Commons)
+· 스탠스필드 테마 — Beethoven 교향곡 9번 4악장 '환희의 송가'(Ode to Joy) · 퍼블릭 도메인 녹음 — 영화 «레옹»에 실제로 사용된 곡
+· 긴장 앰비언스 · 심장박동 — 본 과제에서 ffmpeg로 직접 합성 · CC0
+· 총성 효과음 — Google Sound Library · CC BY 4.0
+· 엔딩 테마 — Sting 〈Shape of My Heart〉 · 영화 주제곡(저작권 음원), 자리표시용 — 공개·배포 시 교체 예정
+
+''저작권 · 면책''
+본 작품은 원작 영화의 팬 2차 창작이자 교육 목적의 비영리 과제입니다.
+원작의 캐릭터 · 설정 · 음악에 대한 권리는 각 원저작권자에게 있습니다.
+
+<div style="margin-top:2em;">[[← 처음으로 돌아간다|Start]]</div>
+
+
+:: PassageHeader\  {"position":"325,50","size":"100,100"}
+<<if setup.showDebug>>\
+<div class="debug-link">[[🛠 Debug|Debug_Jump]]</div>\
+<</if>>\

@@ -1,0 +1,19 @@
+# Local Claude settings (contains API keys)
+.claude/settings.local.json
+
+# Secrets
+.env
+.env.*
+
+# Vercel deploy copy (generated)
+vercel_build/
+.vercel/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini

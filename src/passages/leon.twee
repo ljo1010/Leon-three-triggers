@@ -1,0 +1,1043 @@
+:: Leon_00_Briefing [leon] {"position":"500,200","size":"100,100"}
+<<set $perspective to "leon">>
+<<bgm "leon">>
+
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— ACT 1: LÉON —
+</div>
+
+<img class="character-portrait" src="images/leon_portrait.png" alt="">
+
+<img class="scene-image" src="images/italian_restaurant.png" alt="">
+
+토니의 식당. 영업이 끝난 시간. 의자들은 테이블 위에 거꾸로 올라가 있고 주방 불만 희미하게 살아 있다.
+
+당신은 늘 앉던 구석 자리에 앉는다. 우유 한 잔을 시킨다. 토니는 늘 그러듯 묻지 않는다.
+
+토니가 봉투 대신 이름 하나를 식탁에 내려놓는다.
+
+<<type 30ms>>"건물 위층에 사는 뚱뚱한 친구야. 우리 물건을 '보관'하는 자린데 — 요즘 손이 너무 가벼워졌어. 자기 걸로 착각하나 봐."<</type>>
+
+그는 와인을 한 모금 넘긴다.
+
+<<type 30ms>>"죽이진 마. 아직은. 그냥 — 누가 주인인지 똑똑히 기억하게 해 줘. 다신 헷갈리지 않게."<</type>>
+
+당신은 고개를 끄덕인다. 말은 필요 없다. 이건 그냥 일이다. 그게 전부다.
+
+<<set $leon.discipline += 1>>
+
+<img class="scene-image" src="images/leon_glasses_tony.png" alt="">
+
+당신은 선글라스를 내려 쓴다. 어두운 렌즈 위로 몸을 기울인 토니의 얼굴이 작게 일그러져 비친다. 당신이 세상을 보는 방식 — 한 겹 너머에서 거리를 두고.
+
+당신은 주소를 외운다. 그리고 일어선다.
+
+[[그 건물로 향한다|Leon_01_Hit]]
+
+
+:: Leon_01_Hit [leon] {"position":"500,325","size":"100,100"}
+<<set $perspective to "leon">>
+<<bgm "tense">>
+
+<img class="scene-image" src="images/leon_hotel_hit.png" alt="">
+
+리틀 이탈리아의 한 호텔. 14층. 뚱뚱한 친구는 혼자 살지 않는다.
+표적은 일곱 명 — 그를 지키는 경호원들. 당신은 혼자다.
+
+<<timed 1s>>
+환풍구 안에서 숨을 죽인다. 천장의 미세한 진동. 발소리 둘. 셋. 다섯.
+
+<img class="scene-image" src="images/leon_wristwatch.png" alt="">
+손목의 시계를 본다. 약속한 시간까지 15초.
+
+<<next 2.5s>>
+<<gunshot>>
+<img class="scene-image" src="images/hit_action1.png" alt="">
+당신은 그림자에서 걸어 나온다. 첫 두 명은 당신을 보지도 못한다.
+
+<<next 4.5s>>
+<<shake>>
+나머지가 돌아선다. 권총을 빼 든다. 하지만 당신이 더 빠르다 — 늘 그래 왔다.
+
+<<next 6.5s>>
+<<gunshot>>
+<img class="scene-image" src="images/hit_action2.png" alt="">
+당신은 연기 사이를 천천히 가로지른다. 쓰러진 그림자들을 하나씩 지나친다. 서두르지 않는다.
+
+<<next 8.5s>>
+<<type 30ms>>일곱 발. 일곱 그림자. 방 안의 모든 움직임이 멈춘다.<</type>>
+
+<<next 10s>>
+[[안쪽 방으로 마지막 한 사람에게 간다|Leon_01_Warning]]
+<</timed>>
+
+
+:: Leon_01_Warning [leon] {"position":"500,400","size":"100,100"}
+<img class="scene-image" src="images/leon_warning_knife.png" alt="">
+
+안쪽 방. 뚱뚱한 친구가 의자에 얼어붙어 있다. 땀이 턱을 타고 흐른다. 경호원 일곱이 한 마디 비명도 없이 사라졌다는 걸 그는 방금 깨달았다.
+
+당신은 그의 뒤로 다가선다. 칼날이 그의 목에 닿는다. 차갑게.
+
+그가 무어라 흥정을 하려 한다 — 돈. 물건. 이름들. 당신은 듣지 않는다.
+
+<<type 30ms>>"······토니가 보냈다."<</type>>
+
+그 이름 하나에 그의 입이 다물린다.
+
+당신은 몸을 숙여 그의 귓가에 아주 조용히 말한다. 협박이 아니라 사실을 전달하듯.
+
+<<type 35ms>>"다음엔 토니가 나를 보내지 않아. 내가 — 그냥 온다. 알아들었나."<</type>>
+
+그가 고개를 미친 듯이 끄덕인다. 당신은 칼을 거둔다. 오늘 그는 죽지 않는다. 그게 의뢰였으니까.
+
+<<set $leon.discipline += 1>>
+<<clue "경고는 한 번뿐이다">>
+
+[[흔적 없이 빠져나간다|Leon_01_Hit_End]]
+
+
+:: Leon_01_Hit_End [leon] {"position":"500,450","size":"100,100"}
+<<bgm "leon">>\
+<img class="scene-image" src="images/leon_smoke_clearing.png" alt="">
+
+누구도 당신의 얼굴을 보지 못했다. 누구도 당신이 거기 있었다는 것을 모른다.
+
+그게 규칙이다.
+
+<<clue "규율: 흔적을 남기지 말 것">>
+
+<img class="scene-image" src="images/leon_dawn_walk.png" alt="">
+새벽 4시. 당신은 우유 한 팩과 함께 자신의 아파트로 돌아간다.
+
+[[집으로 돌아간다|Leon_02_Home]]
+
+
+:: Leon_02_Home [leon] {"position":"500,575","size":"100,100"}
+<img class="scene-image" src="images/leon_apartment.png" alt="">
+
+202호. 당신의 방.
+
+가구는 거의 없다. 침대 대신 의자. 식물 한 그루. 우유 한 팩.
+
+<figure class="prop-fig"><img class="prop" src="images/clue_milk_glass.png" alt=""><figcaption>우유</figcaption></figure>
+
+<figure class="prop-fig"><img class="prop" src="images/clue_plant.png" alt=""><figcaption>화분</figcaption></figure>
+화분에 물을 준다. 매일 아침의 의식.
+
+이 식물의 이름을 당신은 모른다. 단지 — 뿌리가 없다는 것을 안다. 자신과 같다.
+
+TV가 꺼진 채로 침묵한다. 창밖으로 도시가 깨어난다.
+
+[[그때 복도에서 무슨 소리가 들린다|Leon_03_Stairs]]
+
+
+:: Leon_03_Stairs [leon] {"position":"500,700","size":"100,100"}
+<img class="scene-image" src="images/leon_stairs.png" alt="">
+
+문틈으로 복도를 본다.
+
+201호. 옆집. 한 소녀가 계단참에 앉아 있다. 12살쯤. 한쪽 눈이 부어 있다. 손에는 우유팩.
+
+당신은 자신의 우유팩을 본다. 그녀의 우유팩을 본다.
+
+<<type 200ms>>······<</type>>
+
+<div class="rule"><b>규칙</b>여자와 아이는 절대 연관되지 않는다.</div>
+
+당신은 문을 닫으려 한다.
+
+<<pick "Leon_03_Close" "그대로 문을 닫는다" "규율 +1 · 애착 −1">>
+<<pick "Leon_03_Watch" "잠시 더 지켜본다" "애착 +1 · 규율 −1">>
+
+
+:: Leon_03_Close [leon] {"position":"525,825","size":"100,100"}
+<<set $leon.discipline += 1>>
+<<set $leon.attachment -= 1>>
+
+문이 닫힌다. 작은 소리로.
+
+<img class="scene-image" src="images/leon_plant_hands.png" alt="">
+당신은 다시 화분 앞에 선다. 잎을 닦는다. 깨끗하게.
+
+<div class="pov-badge" style="text-align:center;border:none;color:#5d4e7b;letter-spacing:0.4em;">
+— 그러나 당신은 모른다 —
+</div>
+
+같은 시각 같은 건물 4층 아래에서 무슨 일이 벌어지고 있는지.
+
+[[잠시 후 다시 복도에서 소리가 난다|Leon_04_Door]]
+
+
+:: Leon_03_Watch [leon] {"position":"700,825","size":"100,100"}
+<<set $leon.attachment += 1>>
+<<set $leon.discipline -= 1>>
+
+당신은 문을 닫지 않는다. 살짝 열린 채로 소녀를 본다.
+
+<img class="scene-image" src="images/leon_stairs.png" alt="">
+
+소녀가 고개를 든다. 시선이 부딪힌다.
+
+<img class="scene-image" src="images/mathilda_eye.png" alt="">
+그녀의 눈은 — 당신이 오래전에 잊었던 무언가를 닮았다.
+
+<<clue "마틸다의 눈빛">>
+
+소녀는 다시 고개를 숙인다. 당신도 문을 천천히 닫는다.
+
+[[화분 앞으로 돌아간다|Leon_04_Door]]
+
+
+:: Leon_04_Door [leon] {"position":"450,1000","size":"100,100"}
+<<bgm "tense">>\
+<img class="scene-image" src="images/leon_door_choice.png" alt="">
+
+30분이 흘렀다.
+
+<<timed 1s>>
+그때 — 복도에서 ''그것''이 들린다.
+
+<<next 2s>>
+<<gunshot "shotgun">>
+<<type 50ms>>총성. 한 발. 두 발. 세 발. 네 발.<</type>>
+
+<<next 4s>>
+짧은 비명. 어른의 목소리. 그리고 침묵.
+
+<<next 5.5s>>
+당신은 눈을 감는다. 들어선 안 되는 소리. 듣지 말아야 할 소리.
+
+<div class="rule"><b>규율</b>관여하지 말 것.</div>
+
+<<next 7s>>
+하지만 — ''쿵.''
+
+<<sfx "door_knock">>문 두드리는 소리. 작고 빠른. 어린아이의 손.
+
+<<next 8.5s>>
+<<type 40ms>>"제발요. 살려주세요."<</type>>
+
+<<next 10s>>
+<img class="scene-image" src="images/door_chain.png" alt="">
+당신의 손이 권총 위에 놓인다. 다른 손은 — 문고리 위에서 멈춘다.
+
+이 문을 여는 순간 당신의 모든 규율은 깨진다.
+이 문을 열지 않는 순간 문 너머의 아이는 죽는다.
+
+<<next 12s>>
+<<pick "Leon_05_Open" "문을 연다" "애착 +3 · 규율 −5">>
+<<pick "Leon_05_Closed" "문을 열지 않는다" "규율 +2 · 애착 −2">>
+<</timed>>
+
+
+:: Leon_05_Open [leon] {"position":"150,1150","size":"100,100"}
+<<set $leon.attachment += 3>>
+<<set $leon.discipline -= 5>>
+<<set $endingFlags.openedDoor = true>>
+
+<img class="scene-image" src="images/leon_open_ending.png" alt="">
+
+문이 열린다.
+
+<img class="scene-image" src="images/mathilda_in_apartment.png" alt="">
+소녀가 들어온다. 당신의 좁은 방 안으로. 당신의 오랜 규율 안으로.
+
+그녀는 화분을 본다. 우유팩을 본다. 당신을 본다.
+
+<<type 40ms>>"······저 사람들이 우리 가족을 죽였어요. 내 동생도. 네 살이었어요."<</type>>
+
+당신은 아무 말도 하지 않는다. 대답할 말이 없다.
+
+<<timed 2s>>
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— END OF ACT 1 —
+</div>
+<</timed>>\
+<<timed 4.5s>>
+
+그녀가 무엇을 잃고 이 문 앞에 섰는지 당신은 아직 모른다. 한 시간 전 저 복도 너머에서 무슨 일이 있었는지 —
+
+[[한 시간 전 — 그녀가 본 것|Mathilda_01_Hallway]]
+<</timed>>
+
+
+:: Leon_05_Closed [leon] {"position":"825,1000","size":"100,100"}
+<<set $leon.discipline += 2>>
+<<set $leon.attachment -= 2>>
+<<set $endingFlags.closedDoor = true>>
+
+당신의 손이 문고리에서 떨어진다.
+
+문 너머의 흐느낌이 잦아든다. 잠시 후 발소리. 누군가 계단을 올라오고 있다.
+
+소녀의 발소리는 — 멀어진다.
+
+<img class="scene-image" src="images/leon_closed_aftermath.png" alt="">
+당신은 다시 화분 앞에 선다. 잎이 흔들린다. 당신의 손이 떨리는 줄 모르고.
+
+<<timed 2s>>
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— 그날 당신은 한 아이를 죽게 두었다 —
+</div>
+<</timed>>\
+<<timed 3.5s>>
+<div class="bad-ending">BAD ENDING — 닫힌 문</div>
+
+[[그녀에게 무슨 일이 있었는지 알고 싶다 (마틸다의 시점)|Mathilda_01_Hallway]]
+[[다시 선택한다|Leon_04_Door][$leon.discipline -= 2; $leon.attachment += 2; $endingFlags.closedDoor to false]]
+<</timed>>
+
+
+:: Leon_06_Training [mathilda] {"position":"200,1325","size":"100,100"}
+<<set $mathilda.trust += 1>>\
+<<bgm "leon">>\
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— ACT 2: MATHILDA —
+</div>
+
+<img class="scene-image" src="images/mathilda_with_leon.png" alt="">
+
+며칠이 지났다.
+
+<img class="scene-image" src="images/training_silhouette.png" alt="">
+
+부엌의 단 하나뿐인 펜던트 조명 아래 그는 베레타를 분해하고 있었다. 슬라이드. 총열. 탄창. 한 조각씩. 나는 맞은편 의자에 앉아 그 손을 들여다봤다.
+
+<figure class="prop-fig"><img class="prop" src="images/beretta_parts.png" alt=""><figcaption>분해된 베레타</figcaption></figure>
+
+그때 나는 입 밖에 낸 적 없던 부탁을 꺼냈다.
+
+<<type 30ms>>"이걸 가르쳐 줄 수 있어요?"<</type>>
+
+그의 손이 멈췄다. 청소용 천에 묻은 기름 냄새. 그는 한참 대답하지 않았다 — 나중에야 알았다. 그건 누구도 그에게 한 적 없던 질문이었다는 걸.
+
+<<pick "Leon_07_Lesson" "그가 가르쳐 준다" "애착 +2 · 기술 +1 · 신뢰 +1">>
+<<pick "Leon_07_Refuse" "그가 거절한다" "규율 +2 · 분노 +1">>
+
+
+:: Leon_07_Lesson [mathilda] {"position":"100,1500","size":"100,100"}
+<<set $leon.attachment += 2>>
+<<set $mathilda.skill += 1>>
+<<set $mathilda.trust += 1>>
+
+<img class="scene-image" src="images/mathilda_training.png" alt="">
+
+그는 천천히 슬라이드를 다시 끼웠다.
+
+"안전장치. 먼저, 안전장치다."
+
+그의 손 아래에서 내 손이 차가운 금속을 더듬었다.
+
+<<clue "첫 수업: 안전장치">>
+
+밤이 깊어졌다. 창밖으로 도시가 깜빡였다. 그날 밤 참 오랜만에 — 누군가 내게 필요한 것을 가르쳐 주었다.
+
+[[다음 날 아침|Leon_08_Morning]]
+
+
+:: Leon_07_Refuse [mathilda] {"position":"300,1500","size":"100,100"}
+<<set $leon.discipline += 2>>
+<<set $mathilda.rage += 1>>
+
+<img class="scene-image" src="images/leon_refuse_hands.png" alt="">
+
+그는 시선도 들지 않은 채 슬라이드를 마저 조립했다.
+
+"······너는 여기 있으면 안 된다."
+
+나는 아무 말도 못 했다. 발이 저절로 문 쪽으로 움직였다.
+
+등 뒤에서 그가 베레타를 테이블에 내려놓는 소리가 났다. 나중에 생각했다 — 그때 그의 손도 조금은 떨리지 않았을까.
+
+[[다음 날 아침|Leon_08_Morning]]
+
+
+:: Leon_08_Morning [mathilda] {"position":"200,1675","size":"100,100"}
+<img class="scene-image" src="images/coffee_window.png" alt="">
+
+창가에 커피잔 하나. 김이 아침 햇빛 속에서 천천히 풀어졌다.
+
+도시는 아무 일도 없었던 것처럼 깨어났다.
+
+하지만 그 좁은 방 안에서는 — 무언가가 이미 바뀌어 있었다. 그도 나도.
+
+[[나는 그의 곁에 앉는다|Leon_08b_Reading]]
+
+
+:: Leon_08b_Reading [mathilda] {"position":"350,1675","size":"100,100"}
+<<set $mathilda.trust += 1>>
+<<set $leon.attachment += 1>>
+<img class="scene-image" src="images/leon_reading.png" alt="">
+
+나는 신문지 한 귀퉁이를 찢어 그 위에 또박또박 글자를 적었다.
+
+"이건 'ㄹ'. 이건 'ㅔ'. 이건 'ㅇ'." 연필 끝으로 하나씩 짚었다. "이어서 읽어 봐요."
+
+그는 평생 글자를 몰랐다고 했다. 표적의 이름도 봉투에 적힌 액수도 — 언제나 누군가 대신 읽어 주었다고.
+
+그의 입이 천천히 움직였다.
+
+<<type 200ms>>"······레. 옹."<</type>>
+
+그의 이름. 그가 처음으로 자기 이름을 읽었다.
+
+나는 웃었다. 그도 — 웃는 것 같았다. 죽이는 법만 가르치던 그 방에서 이번엔 내가 그에게 무언가를 가르쳤다.
+
+<<clue "레옹 — 그의 이름">>
+
+[[다음 날 토니를 만나러 간다|Leon_09_Tony]]
+
+
+:: Leon_09_Tony [mathilda] {"position":"200,1850","size":"100,100"}
+<img class="scene-image" src="images/italian_restaurant.png" alt="">
+
+그날 그는 나를 집에 두고 혼자 토니를 만나러 갔다. 이 장면은 — 한참 뒤에야 조각조각 알게 된 것이다.
+
+리틀 이탈리아. 토니의 식당. 오픈 전. 빈 테이블들. 와인병들. 마늘과 토마토 냄새, 그리고 그가 매번 봉투를 받아 가던 그 공간의 냄새.
+
+토니는 늘 앉던 자리에서 신문을 접으며 그를 맞았다고 한다. "레옹! 앉아. 뭐 좀 마실래?"
+
+그는 앉지 않았다. 그는 말주변이 없는 사람이었다 — 평생 누구에게 무얼 부탁해 본 적이 없는. 입을 열려다 다물고 또 열려다 다물었다.
+
+<<type 30ms>>"토니. 나… 내 돈. 조금만… 줄 수 있어?"<</type>>
+
+자기 돈을 달라는 그 한마디를 꺼내는 데 그는 한참이 걸렸다고 한다. 누군가를 위해 무언가가 필요해진 건 그에게 처음 있는 일이었으니까.
+
+<<pick "Leon_10_TonyDeal" "토니가 그를 빤히 본다" "경계심 +1">>
+
+
+:: Leon_10_TonyDeal [mathilda] {"position":"200,2025","size":"100,100"}
+<<set $leon.suspicion += 1>>\
+<img class="scene-image" src="images/tony_table.png" alt="">
+
+토니가 신문을 내려놓았다고 한다. 입은 웃는데 눈은 신문지처럼 메말라 있었다고.
+
+"돈? 네 돈은 내가 잘 갖고 있어, 레옹. 은행보다 안전하지. 넌 글도 숫자도 모르잖아 — 그런 건 내가 맡아 준다니까. 늘 그랬듯이."
+
+토니는 봉투에 손도 대지 않았다. 대신 의자를 끌어당겨 천천히 몸을 기울였다.
+
+<<type 30ms>>"근데 말이야, 레옹. 너… 최근에 여자라도 생긴 거야?"<</type>>
+
+청소부가 제 돈을 찾는다는 건 지킬 무언가가 생겼다는 뜻이니까. 그리고 지킬 게 있는 청소부는 — 더 이상 청소부가 아니라 표적이었다.
+
+그는 대답하지 않았다. 그 침묵이 토니가 한 번도 본 적 없던 그의 얼굴이었다.
+
+<<pick "Leon_11_Plan" '(규율) 끝내 아무 말 없이 그가 식당을 나선다' "규율 +2 · 기술 +1" "$leon.discipline += 2">>
+<<pick "Leon_10_Money" '(애착) "내가 잘못되면 — 그 돈, 그 애한테 줘."' "애착 +2 · 그녀 몫 돈">>
+
+
+:: Leon_10_Money [mathilda] {"position":"50,2200","size":"100,100"}
+<<set $leon.attachment += 2>>
+<<flag "moneyForMathilda">>
+<img class="scene-image" src="images/tony_envelope.png" alt="">
+
+토니의 표정이 굳었다.
+
+"······너 지금 무슨 말 하는지 알기는 해?"
+
+"알아." 그는 처음으로 토니의 눈을 피하지 않았다. "그 애 이름은 마틸다야."
+
+토니는 한참 그를 봤다. 그리고 봉투를 서랍에 넣었다. 약속도 거래도 아닌 — 그냥 넣었다.
+
+…그가 내 이름을 그렇게 말했다는 걸 나는 아주 나중에야 알았다.
+
+<<clue "토니에게 맡긴 약속">>
+
+<<pick "Leon_11_Plan" "그가 식당을 나선다" "기술 +1">>
+
+
+:: Leon_11_Plan [mathilda] {"position":"200,2375","size":"100,100"}
+<<set $mathilda.skill += 1>>\
+<img class="scene-image" src="images/mathilda_resolve.png" alt="">
+
+집. 나는 바닥에 사진 한 장을 펼쳐 놓았다. 신문에서 오려낸 얼굴. 정장. 약에 취한 눈.
+
+<figure class="prop-fig"><img class="prop" src="images/clipping_stansfield.png" alt=""><figcaption>신문 속 그 남자</figcaption></figure>
+
+요 며칠 나는 옥상에서 연습했다. 빈 권총으로 같은 동작을 수백 번. 한번은 조준경으로 공원의 조깅하는 사람을 좇다가 — 그가 총구를 눌러 내렸다. 이제 내 손은 더는 떨리지 않았다.
+
+<<type 30ms>>"이 사람이에요. 내 동생을 쏜 사람. 이제 어디 있는지 알아요."<</type>>
+
+내 목소리엔 더 이상 울음이 없었다. 그게 그를 더 두렵게 했다는 걸 그땐 몰랐다.
+
+<<pick "Leon_11_Restrain" "그가 나를 말린다" "분노 −1 · 신뢰 +1 · 규율 +1">>
+<<gate "mathilda.trust" 2 "Leon_11_Together" "신뢰 +1 · 동행 약속">>그가 함께 가기로 약속한다<</gate>>
+<<gate "leon.attachment" 5 "Leon_11_Confess" "애착 +1 · 신뢰 +1">>그가 처음으로 진심을 말한다<</gate>>
+
+
+:: Leon_11_Restrain [mathilda] {"position":"100,2550","size":"100,100"}
+<<set $mathilda.rage -= 1>>
+<<set $mathilda.trust += 1>>
+<<set $leon.discipline += 1>>
+<img class="scene-image" src="images/photo_facedown.png" alt="">
+
+"안 돼." 그가 사진을 뒤집었다. "복수는 일이 아니야. 일은 — 살아남는 거다."
+
+나는 입을 다물었다. 분노가 한 칸 가라앉고 그 자리에 다른 것이 들어섰다. 그를 향한 믿음 혹은 체념.
+
+"······알겠어요. 그럼 가르쳐 줘요. 살아남는 법부터."
+
+<<pick "Leon_11b_Sniper" "옥상에서 사격을 배운다" "기술 +1">>
+
+
+:: Leon_11_Together [mathilda] {"position":"275,2550","size":"100,100"}
+<<set $mathilda.trust += 1>>
+<<flag "firstOp">>
+<img class="scene-image" src="images/leon_mathilda_window.png" alt="">
+
+그는 사진을 집어 들었다. 오래 봤다.
+
+"혼자는 안 돼. 가면 — 같이 간다. 규칙은 내가 정하고."
+
+나는 처음으로 눈앞이 환해지는 것 같았다. 두려움이 아니라 — 믿음으로.
+
+"규칙. 좋아요. 첫 번째 규칙은요?"
+
+"절대 먼저 쏘지 마라."
+
+<<pick "Leon_11b_Sniper" "옥상에서 사격을 배운다" "기술 +1">>
+
+
+:: Leon_11_Confess [mathilda] {"position":"425,2550","size":"100,100"}
+<<set $leon.attachment += 1>>
+<<set $mathilda.trust += 1>>
+<img class="scene-image" src="images/leon_confession.png" alt="">
+
+20년 동안 누구에게도 한 적 없다는 이야기를 그는 그날 나에게 했다.
+
+"내가 열아홉이었을 때 — 나도 사랑하는 사람을 잃었어. 그 여자의 아버지 손에. 나는 그 남자를 죽이고 이 도시로 도망쳐 왔어. 토니가 받아줬고 — 그때부터 청소부가 됐지."
+
+방 안이 조용해졌다. 도시의 소음마저 멀어졌다.
+
+"복수는 너를 살려두지 않아, 마틸다. 그건 내가 안다. 그러니까 — 내가 같이 있을게. 끝까지."
+
+<<clue "레옹의 과거">>
+
+<<pick "Leon_11b_Sniper" "옥상에서 사격을 배운다" "기술 +1">>
+
+
+:: Leon_11b_Sniper [mathilda] {"position":"200,2640","size":"100,100"}
+<<set $mathilda.skill += 1>>
+<<set $mathilda.rage += 1>>
+<img class="scene-image" src="images/sniper_lesson.png" alt="">
+
+도시가 내려다보이는 옥상. 그가 긴 총을 케이스에서 꺼냈다.
+
+"가까이서 쏘는 건 누구나 한다. 멀리서 — 숨을 멈추고, 바람을 읽고, 한 박자에 당기는 건 다르지."
+
+나는 개머리판을 어깨에 붙였다. 그가 내 자세를 바로잡았다. 팔꿈치. 호흡. 시선.
+
+"숨을 끝까지 내쉰 그 끝에. 심장이 잠깐 멈추는 한 박자에 — 당겨."
+
+도시의 소음이 멀어졌다. 내 호흡이 느려지고 조준선이 더는 흔들리지 않았다.
+
+<img class="scene-image" src="images/scope_face.png" alt="">
+
+하지만 한순간 — 조준선 끝에 사진 속 그 얼굴이 겹쳤다. 내 손끝이 방아쇠를 향해 미끄러졌고 — 그가 총열을 천천히 들어 올렸다. 내 안에서 무언가가 이미 방아쇠를 당기고 있었다.
+
+<<type 30ms>>"······됐어요."<</type>>
+
+"아직. 첫 번째 규칙."
+
+"절대 먼저 쏘지 마라." 나는 답했다.
+
+평생 죽이는 법만 알던 손이 처음으로 누군가를 살리기 위해 무언가를 가르치고 있었다.
+
+<<clue "저격: 호흡과 한 박자">>
+
+<<pick "Leon_12_Recon" "정찰을 시작한다" "경계심 +1">>
+
+
+:: Leon_12_Recon [mathilda] {"position":"200,2725","size":"100,100"}
+<<set $leon.suspicion += 1>>\
+<<bgm "tense">>\
+<img class="scene-image" src="images/recon_building.png" alt="">
+
+옥상에서 내려온 뒤로도 며칠이 더 지났다.
+
+연습만으로 끝나는 복수는 없었다. 나는 멈출 생각이 없었고 — 그도 더는 나를 말릴 수 없다는 걸 알았다. 그렇다면 적어도 살아 돌아오게 하겠다는 얼굴이었다.
+
+그러려면 먼저 적을 알아야 했다. 신문 조각 속 남자가 매일 드나든다는 그곳을. 며칠을 지켜보기만 하다가 그날 밤 처음으로 우리는 그 앞에 차를 세웠다.
+
+스탠스필드의 건물. 정부 청사처럼 깨끗한 외벽. 하지만 드나드는 얼굴들은 청사의 것이 아니었다.
+
+그는 길 건너 차 안에서 그곳을 읽었다. 출입구 둘. 감시 카메라 셋. 정해진 시간마다 바뀌는 그림자들. 나는 옆자리에서 숨을 죽였다. 이건 훈련이 아니었다. 처음으로 진짜였다.
+
+<<pick "Leon_12_Solo" "그가 혼자 들어간다" "애착 +2">>
+<<gate "mathilda.skill" 2 "Leon_12_Lookout" "기술 +1 · 마틸다 무장">>그가 나에게 망을 맡긴다<</gate>>
+
+
+:: Leon_12_Solo [mathilda] {"position":"100,2900","size":"100,100"}
+<<set $leon.attachment += 2>>
+<img class="scene-image" src="images/car_stakeout.png" alt="">
+
+"넌 여기 있어. 차에서. 무슨 일이 있어도 내리지 마."
+
+나는 반박하려다 — 그의 얼굴을 보고 멈췄다.
+
+"문이 두 번 열렸다 닫히면, 그건 나야. 세 번이면 — 시동 걸고 떠나."
+
+나는 고개를 끄덕였다. 그리고 그가 어둠 속으로 사라지는 걸 지켜봤다.
+
+[[그가 건물로 들어간다|Leon_13_Infiltration]]
+
+
+:: Leon_12_Lookout [mathilda] {"position":"300,2900","size":"100,100"}
+<<set $mathilda.skill += 1>>
+<<flag "mathildaArmed">>
+<<item "무전기">>
+<img class="scene-image" src="images/radio_handoff.png" alt="">
+
+그가 내 손에 무전기를 쥐여 줬다. 그리고 — 잠시 망설이다 — 작은 권총도.
+
+"안전장치." 내가 먼저 말했다. "기억해요."
+
+"넌 내 눈이야. 누가 들어가고 나오는지 전부 말해 줘. 절대 직접 움직이지 마라."
+
+나는 고개를 끄덕였다. 처음으로 파트너처럼.
+
+[[그가 건물로 들어간다|Leon_13_Infiltration]]
+
+
+:: Leon_13_Infiltration [mathilda] {"position":"200,3075","size":"100,100"}
+<img class="scene-image" src="images/lobby_v1.png" alt="">
+
+<<timed 1s>>무전기 너머로 들은 것, 그리고 나중에 그가 들려준 것을 합치면 — 그날 안은 이랬다. 로비. 대리석. 너무 깨끗했다.<</timed>>\
+<<timed 4s>>
+
+<img class="scene-image" src="images/lobby_v4.png" alt="">
+그는 엘리베이터를 기다렸다. 층 표시등이 천천히 내려왔다.<</timed>>\
+<<timed 8s>>
+
+그때 — 그의 등 뒤 비상계단 문 너머에서 익숙하지 않은 정적이 흘렀다. 사람이 있어야 할 곳에 사람이 없었다.<</timed>>\
+<<timed 12s>>
+
+<img class="scene-image" src="images/stansfield_face.png" alt="">
+복도 끝 한 남자가 이어폰에 손을 올린 채 그를 보지 않으려 애쓰고 있었다.<</timed>>\
+<<timed 15s>>
+
+<<pick "Leon_13_Push" "그대로 계속 들어간다" "분노 +1">>
+<<gate "leon.suspicion" 2 "Leon_13_Trap" "경계심 +1 · 함정 간파">>이건 함정이다 — 그가 발을 멈춘다<</gate>>
+<</timed>>
+
+
+:: Leon_13_Trap [mathilda] {"position":"300,3250","size":"100,100"}
+<<set $leon.suspicion += 1>>
+<<flag "sensedTrap">>
+<img class="scene-image" src="images/stairwell_escape.png" alt="">
+
+그는 엘리베이터 버튼에서 손을 뗐다. 오랜 본능이 등골을 타고 올라왔다고 했다.
+
+문이 열리기 전에 그는 이미 비상계단으로 몸을 틀었다.
+
+뒤에서 — 엘리베이터가 열리고 비어 있어야 할 그 안에서 두 그림자가 쏟아져 나왔다. 그가 있던 자리를 향해.
+
+하지만 그는 이미 거기 없었다.
+
+<<clue "스탠스필드의 함정">>
+
+[[그가 빠져나온다|Leon_14_ActEnd]]
+
+
+:: Leon_13_Push [mathilda] {"position":"100,3250","size":"100,100"}
+<<set $mathilda.rage += 1>>
+<<gunshot>>
+엘리베이터 문이 열렸다.
+
+그 안은 — 비어 있지 않았다.
+
+총성. 무전기 너머로 그게 쏟아졌다. 나는 차 안에서 손잡이를 움켜쥐었다. 나중에 들었다 — 그가 대리석 위로 몸을 던지고, 쏘고, 구르고, 다시 쐈다고. 오랜 세월이 그의 손끝에서 저절로 움직였다고.
+
+<img class="scene-image" src="images/lobby_gunfight.png" alt="">
+
+<<shake>>총구의 불빛이 기둥들 사이에서 번쩍였다. 대리석에 튄 탄피가 음악처럼 굴렀다. 그는 멈추지 않았다.
+
+<img class="scene-image" src="images/lobby_aftermath.png" alt="">
+
+<figure class="prop-fig"><img class="prop" src="images/casings_marble.png" alt=""><figcaption>탄피</figcaption></figure>
+
+연기가 걷혔을 때 로비에 선 건 그 혼자였다. 살아서. 겨우.
+
+이건 청부가 아니었다. 이건 — 그를 기다리고 있었다.
+
+[[그가 건물을 빠져나온다|Leon_14_ActEnd]]
+
+
+:: Leon_14_ActEnd [mathilda] {"position":"200,3425","size":"100,100"}
+<<bgm "stop">>\
+<img class="scene-image" src="images/fallen_plant.png" alt="">
+
+집. 문은 반쯤 열려 있었다.
+
+나는 나오다가 화분을 쓰러뜨리고 말았다. 흙이 바닥에 흩어졌다. 그가 한 번도 흘린 적 없는 흙.
+
+…나는 떠나기로 했다.
+
+식탁 위 신문에서 오려낸 그 얼굴 옆에 — 나는 삐뚤빼뚤한 글씨를 한 줄 남겼다. 그가 읽을 수 있는 단 한 줄.
+
+<figure class="prop-fig"><img class="prop" src="images/mathilda_note.png" alt=""><figcaption>남기고 간 쪽지</figcaption></figure>
+
+<<flag "mathildaGone">>\
+<<type 40ms>>"미안해요. 이건 내 일이에요."<</type>>
+
+<<timed 3s>>
+
+나는 혼자 갔다. 그 건물로.<</timed>>\
+<<timed 6s>>
+
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;margin-top:2em;">— END OF ACT 2 —</div><</timed>>\
+<<timed 8s>>
+
+[[그가 나를 쫓는다|Leon_15_Pursuit]]
+<</timed>>
+
+
+:: Leon_15_Pursuit [leon] {"position":"200,3600","size":"100,100"}
+<<bgm "tense">>\
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;">
+— ACT 3: LÉON —
+</div>
+
+<img class="scene-image" src="images/leon_pursuit.png" alt="">
+
+당신은 쪽지를 쥔다. 글자는 읽지 못한다. 하지만 안다.
+
+그녀는 혼자 그 건물로 갔다. 사진 속 남자에게로.
+
+서랍을 연다. 베레타. 탄창 셋. 여태껏 청부였던 손이 처음으로 청부가 아닌 일을 위해 움직인다.
+
+<<item "베레타 92FS">>
+
+<<type 30ms>>늦지 않기를.<</type>>
+
+[[정면으로 들어간다|Leon_16_Rescue]]
+<<gate "leon.suspicion" 3 "Leon_16_Rescue" "은밀 진입 · 경계심">>경비 동선을 읽고 뒤로 돈다<</gate>>
+
+
+:: Leon_16_Rescue [leon] {"position":"200,3775","size":"100,100"}
+<img class="scene-image" src="images/mathilda_captured.png" alt="">
+
+8층. 유리문 너머 스탠스필드가 마틸다의 머리채를 쥐고 있다. 그녀의 손에는 수갑. 입술이 터졌지만 — 눈은 꺾이지 않았다.
+
+스탠스필드가 당신을 본다. 웃는다. 약에 풀린 눈으로.
+
+<<type 30ms>>"청소부가 식구를 찾으러 왔나."<</type>>
+
+복도의 그림자들이 일제히 멈춘다. 당신의 손가락이 방아쇠에 닿는다.
+
+[[그녀를 향해 몸을 던진다|Leon_16_Grab]]
+<<gate "leon.suspicion" 3 "Leon_16_Shot" "한 발로 · 경계심">>단 한 발로 그의 손목을 끊는다<</gate>>
+
+
+:: Leon_16_Grab [leon] {"position":"100,3950","size":"100,100"}
+<<set $mathilda.trust += 1>>
+<<gunshot>>
+당신은 생각하지 않는다. 몸이 먼저 간다.
+
+<img class="scene-image" src="images/shattered_glass.png" alt="">
+
+유리가 부서지고 당신은 마틸다를 끌어안은 채 바닥을 구른다. 총알이 머리 위로 쏟아진다.
+
+"잡아." 그녀가 당신의 옷깃을 움켜쥔다. 이제껏 누구도 당신을 그렇게 잡은 적이 없다.
+
+<<flag "savedMathilda">>
+[[그녀를 데리고 빠져나간다|Stansfield_00_Aftermath]]
+
+
+:: Leon_16_Shot [leon] {"position":"300,3950","size":"100,100"}
+<<set $leon.suspicion += 1>>
+<img class="scene-image" src="images/office_night.png" alt="">
+
+당신은 숨을 멈춘다. 당신의 본능이 손끝에 모인다.
+
+한 발.
+
+<img class="scene-image" src="images/stansfield_wounded.png" alt="">
+
+총알이 스탠스필드의 오른 손목을 으스러뜨린다. 권총이 바닥에 떨어지고 마틸다가 그 손아귀에서 풀려난다.
+
+그가 짐승처럼 비명을 지른다. 평생 방아쇠를 당겨 온 그 손이 — 다시는 예전 같지 않을 것이다.
+
+"······다음엔 머리다." 당신은 마틸다를 등 뒤로 감춘다. 부하들이 감히 다가오지 못한다.
+
+스탠스필드의 풀린 눈에 처음으로 약기운이 아닌 것이 들어찬다. 굴욕. 그리고 — 당신을 향한 사적인 증오.
+
+<<clue "스탠스필드의 부서진 손">>
+<<flag "savedMathilda">>
+<<flag "stansfieldWounded">>
+[[그녀를 데리고 빠져나간다|Stansfield_00_Aftermath]]
+
+
+:: Leon_17_Siege [leon] {"position":"200,4125","size":"100,100"}
+<<bgm "tense">>\
+<img class="scene-image" src="images/siege_corridor.png" alt="">
+
+집. 하지만 더 이상 집이 아니다.
+
+한밤중 복도의 전등이 하나씩 꺼진다. 누군가 건물의 두꺼비집을 통째로 내렸다.
+
+창밖 거리는 경광등으로 붉고 푸르다. 무전 소리. 방패. 방탄복. 군화 — 수십 어쩌면 수백. 스탠스필드는 청소부 하나를 잡으려고 도시 전체를 불러 모았다.
+
+<img class="scene-image" src="images/siege_street.png" alt="">
+
+마틸다가 당신의 소매를 잡는다. <<type 30ms>>"······이게 다 우리 때문이에요?"<</type>>
+
+"아니." 당신은 베레타의 탄창을 확인한다. "이건 내 일이야. 평생 해 온 일."
+
+<<shake>>문이 — 부서진다.
+
+<img class="scene-image" src="images/door_breach.png" alt="">
+
+[[불을 끈다|Leon_17b_Hold]]
+
+
+:: Leon_17b_Hold [leon] {"position":"200,4250","size":"100,100"}
+<<gunshot>>
+<img class="scene-image" src="images/leon_smoke_clearing.png" alt="">
+
+당신은 남은 전등마저 깨뜨린다. 어둠 속에서라면 — 당신이 그들보다 한 수 위다.
+
+첫 번째 조가 문을 넘는다. 당신은 쏘지 않는다. 기다린다. 그들의 눈이 어둠에 익숙해지기 전에 셋이 소리 없이 쓰러진다.
+
+그들은 다시 온다. 이번엔 — 수류탄이 방 안으로 굴러든다.
+
+<img class="scene-image" src="images/grenade_blast.png" alt="">
+
+<<shake>>폭음. 그리고 연기. 당신은 그 속을 벽을 따라 흐르고, 가구 뒤에서 솟아오르고, 다시 사라진다. 당신이 살아온 모든 시간이 손끝에서 저절로 움직인다.
+
+<img class="scene-image" src="images/darkness_fight.png" alt="">
+
+하지만 숫자는 줄지 않는다. 하나를 눕히면 둘이 들어선다.
+
+어깨에 뜨거운 것이 박힌다. 그리고 옆구리에. 당신은 벽에 기대 숨을 고른다. 셔츠가 검게 젖어 든다.
+
+<img class="scene-image" src="images/leon_wounded_wall.png" alt="">
+
+당신은 처음으로 안다. 이 밤을 당신은 살아서 끝낼 수 없다는 것을.
+
+욕실 문틈으로 — 마틸다의 눈이 당신을 본다.
+
+<img class="scene-image" src="images/mathilda_eye.png" alt="">
+
+적어도 그녀만은. 그 하나만은.
+
+[[벽으로 다가간다|Leon_17c_Vent]]
+
+
+:: Leon_17c_Vent [leon] {"position":"200,4375","size":"100,100"}
+<img class="scene-image" src="images/vent_escape.png" alt="">
+
+당신은 개머리판으로 벽을 뜯는다. 환풍구. 한 사람이 겨우 빠져나갈 틈.
+
+"가. 이 안으로. 끝까지 기어가면 옆 건물 옥상이야."
+
+<<if $endingFlags.moneyForMathilda>>"토니에게 가. 네 몫은 거기 있어. 약속했으니까."<<else>>"멈추지 마. 뒤돌아보지도 마."<</if>>
+
+<<type 40ms>>"······싫어요. 같이 가요. 우리 같이 가기로 했잖아요."<</type>>
+
+당신은 피 묻은 손으로 그녀의 얼굴을 감싼다. 누구에게도 한 적 없는 말이 나온다.
+
+<<type 30ms>>"너는 내게 — 사는 맛을 알려줬어. 침대에서 자고, 뿌리를 내리고 싶다는 걸. 그러니까 살아. 나를 위해서라도. 부탁이다."<</type>>
+
+그녀의 눈에서 무언가가 무너진다. 그리고 — 끄덕인다.
+
+[[그녀를 환풍구로 밀어 넣는다|Leon_18_LastChoice]]
+<<gate "mathilda.trust" 4 "Leon_18_LastChoice" "신뢰로 보낸다">>"날 믿어." — 그녀는 당신을 믿는다<</gate>>
+
+
+:: Leon_18_LastChoice [leon] {"position":"200,4300","size":"100,100"}
+<img class="scene-image" src="images/leon_door_choice.png" alt="">
+
+환풍구 너머로 그녀의 발소리가 멀어진다. 살아서.
+
+이제 당신 차례다. 문 하나를 사이에 두고 도시 전체가 당신을 기다린다.
+
+마지막 선택이 남았다.
+
+[[그녀를 위해 당신이 막아선다|Leon_END_Sacrifice]]
+<<gate "leon.attachment" 7 "Leon_END_Quiet" "살아서 돌아간다">>당신도 살아 나갈 길을 찾는다<</gate>>
+<<if $endingFlags.mathildaArmed>>\
+<<gate "mathilda.rage" 4 "Leon_END_Revenge" "그녀의 방아쇠">>방아쇠는 그녀의 것이어야 한다<</gate>>
+<</if>>\
+<<if $endingFlags.stansfieldWounded>>\
+[[부러진 손의 그를 당신이 직접 끝낸다|Leon_END_Reckoning]]
+<</if>>\
+
+
+:: Leon_END_Sacrifice [leon] {"position":"100,4500","size":"100,100"}
+<<flag "route" "sacrifice">>
+<<bgm "leon">>\
+<img class="scene-image" src="images/building_lobby.png" alt="">
+
+환풍구 너머로 그녀의 발소리가 멀어진다. 살아서.
+
+이제 — 당신에게도 살아야 할 이유가 생겼다. 그래서 처음으로 당신은 죽지 않으려 한다.
+
+쓰러진 진압대원의 방패와 담요를 끌어안고 부상자인 척 비틀거리며 계단을 내려간다. 피. 들것. 연기. 흔적을 남기지 않는 청소부의 마지막 위장.
+
+한 층. 또 한 층. 아무도 당신을 알아보지 못한다.
+
+로비. 회전문 너머로 — 새벽빛이 희미하게 번진다. 거의 다 왔다.
+
+평생 처음으로 당신은 그 빛 너머에 누군가 당신을 기다리고 있다고 믿는다. 우유 두 잔과 뿌리 내린 화분이 있는 곳.
+
+빛에 손이 닿을 듯하다.
+
+[[문턱을 넘는다|Leon_END_Sacrifice2]]
+
+
+:: Leon_END_Sacrifice2 [leon] {"position":"100,4650","size":"100,100"}
+<<bgm "stop">>\
+<<sfx "heartbeat">>\
+<img class="scene-image" src="images/end_light.png" alt="">
+
+<<timed 1s>>등 뒤에서 — 익숙한 콧노래. 베토벤.<</timed>>\
+<<timed 3s>>
+
+<<type 35ms>>"······수고했어. 청소부."<</type>><</timed>>\
+<<timed 5.5s>>
+
+<<gunshot>>
+등에 불이 박힌다. 당신은 무릎을 꿇는다. 손가락 사이로 새벽빛이 빠져나간다.<</timed>>\
+<<timed 8s>>
+
+<img class="scene-image" src="images/stansfield_looms.png" alt="">
+
+스탠스필드가 당신을 내려다본다. 약에 풀린 눈. 이긴 자의 눈.
+
+하지만 당신의 손은 — 마지막 힘으로 그의 손을 잡는다. 그리고 그 손바닥에 작고 차가운 금속 고리 하나를 쥐여 준다.
+
+<img class="scene-image" src="images/grenade_pin.png" alt=""><</timed>>\
+<<timed 10.5s>>
+
+<<type 50ms>>"······이건. 마틸다가. 주는 거다."<</type>><</timed>>\
+<<timed 13s>>
+
+<img class="scene-image" src="images/stansfield_fear.png" alt="">
+
+스탠스필드의 동공이 풀린 안개 너머로 처음으로 또렷해진다. 공포.
+
+당신의 코트가 천천히 열린다. 안감을 가득 채운 핀 뽑힌 수류탄들. 그 모든 세월의 무게가 — 마지막 순간 거짓말처럼 가벼워진다.<</timed>>\
+<<timed 15.5s>>
+
+<<gunshot>>
+빛.<</timed>>\
+<<timed 17s>>
+
+[[······|Mathilda_END_School]]
+<</timed>>
+
+
+:: Leon_END_Quiet [leon] {"position":"300,4500","size":"100,100"}
+<<flag "route" "quiet">>
+<<bgm "leon">>\
+<img class="scene-image" src="images/end_milk_plant.png" alt="">
+
+당신은 막아서지 않는다. 방아쇠도 분노도 내려놓는다. 살아서 돌아가는 것 — 평생 청부였던 당신이 처음으로 고른 청부가 아닌 일. 그것만이 그녀에게 줄 수 있는 유일한 것이므로.
+
+연기와 비명 무너지는 천장 사이로 — 당신은 청소부답게 사라진다. 흔적 없이. 그들이 찾던 건 시체였지만 시체는 끝내 나오지 않았다. 마지막으로 단 한 번 당신은 당신의 규칙을 지켰다.
+
+<<timed 2s>>
+
+총상은 깊었다. 어느 낯선 뒷방 누구의 손에서 며칠을 앓았는지조차 당신은 기억하지 못한다. 열에 들뜬 밤마다 떠오른 건 — 우유 냄새. 화분에 물을 주던 아침의 빛. 그리고 누군가 당신을 기다리고 있다는 낯선 감각.
+
+평생 통증을 견디는 법만 알던 당신이 처음으로 통증을 ''이겨내려'' 했다. 살아야 할 이유가 — 마침내 통증보다 컸으므로.<</timed>>\
+<<timed 4.5s>>
+
+그리고 당신은 그녀를 찾아갔다.
+
+며칠 뒤. 도시의 끝 총성이 닿지 않는 동네. 햇빛이 길게 드는 창가.
+
+식탁 위엔 우유 두 잔. 그리고 — 당신이 평생 품고 다니던 그 화분이 처음으로 흙에 심겨 있다. 뿌리를 내린 채로. 더는 들고 다니지 않아도 되는 채로.
+
+언젠가 당신은 생각했었다. //이 식물은 뿌리가 없다. 나와 같다.// — 이제는 둘 다 아니다.<</timed>>\
+<<timed 6.5s>>
+
+<<type 40ms>>"여기선 괜찮을 것 같아요. 그렇죠, 레옹?"<</type>><</timed>>\
+<<timed 8.5s>>
+
+당신은 대답 대신 그녀의 머리에 손을 얹는다. 참으로 오랜만에 — 떨리지 않는 손.
+
+<div class="polaroid"><img class="scene-image" src="images/end_photo.png" alt=""></div>
+
+창밖으로 도시가 깨어난다. 누군가에겐 그저 또 하나의 아침이지만 두 사람에겐 — 처음 맞는 아침이다.
+
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;margin-top:2em;color:#d4a574;">— END: 우유와 화분 —</div><</timed>>\
+<<timed 10s>>
+
+<<link "처음으로">><<run window.SugarCube.Engine.restart()>><</link>>
+<</timed>>
+
+
+:: Leon_END_Revenge [leon] {"position":"500,4500","size":"100,100"}
+<<flag "route" "revenge">>
+<<bgm "stansfield">>\
+<img class="scene-image" src="images/end_revenge.png" alt="">
+
+당신은 그녀를 보내지 않았다. 방아쇠는 그녀의 것이어야 한다고 그녀가 옳았다고 — 인정해 버렸으므로.
+
+마틸다가 돌아선다. 작은 손이 더는 떨리지 않는다. 안전장치. 먼저, 안전장치.
+
+스탠스필드가 약에 풀린 눈으로 그녀를 본다. 그리고 처음으로 두려움을 안다.
+
+<<gunshot>>
+<<type 50ms>>"이건 — 내 동생이 주는 거야."<</type>>
+
+<<timed 2s>>
+
+연기가 걷힌다. 열두 살은 그날 죽었다. 그 자리에 — 또 하나의 청소부가 서 있다.<</timed>>\
+<<timed 4s>>
+
+당신이 그녀에게 가르친 모든 것이 그녀를 살렸고 — 동시에 당신을 닮게 만들었다.
+
+두 사람은 함께 그 건물을 걸어 나온다. 누구도 막지 않는다. 막을 수 있는 자는 이미 없으므로.
+
+그녀는 더 이상 울지 않는다. 당신은 그것이 승리인지 당신이 저지른 가장 큰 죄인지 — 끝내 알지 못한다.
+
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;margin-top:2em;color:#5d4e7b;">— END: 그림자 —</div><</timed>>\
+<<timed 6s>>
+
+<<link "처음으로">><<run window.SugarCube.Engine.restart()>><</link>>
+<</timed>>
+
+
+:: Leon_END_Reckoning [leon] {"position":"700,4500","size":"100,100"}
+<<flag "route" "reckoning">>
+<<bgm "leon">>\
+<img class="scene-image" src="images/end_reckoning.png" alt="">
+
+당신은 도망치지 않는다. 도망칠 필요가 없으므로.
+
+8층에서 당신이 으스러뜨린 그의 오른손 — 도시 전체를 떨게 하던 포식자는 이제 방아쇠 하나 제대로 당기지 못한다.
+
+연기 속에서 당신은 그를 찾아낸다. 무너진 벽에 기대 망가진 손을 가슴에 품은 채 처음으로 약기운이 가신 맨얼굴로 당신을 올려다보는 남자를.
+
+<<timed 2s>>
+
+<<type 35ms>>"······기다려. 협상하자. 난 DEA야. 난——"<</type>><</timed>>\
+<<timed 4s>>
+
+그가 베토벤을 흥얼거리려 한다. 하지만 이번엔 폭풍이 그보다 먼저 와 있다.
+
+당신은 그의 멀쩡한 손에 작고 차가운 무언가를 쥐여 준다.
+
+<<type 45ms>>"······이건. 마틸다가. 주는 거다."<</type>><</timed>>\
+<<timed 6.5s>>
+
+<<gunshot>>
+콧노래가 멈춘다.<</timed>>\
+<<timed 8.5s>>
+
+당신은 살아서 그 건물을 걸어 나온다. 어깨의 총상은 깊지만 숨은 붙어 있다.
+
+다만 — 무언가를 그 안에 두고 나온다. 평생 지켜 온 단 하나의 규율을. ''여자와 아이는 연관되지 않는다'' 가 아니라 — ''표적은 일이어야 한다'' 는 것을.
+
+이번 방아쇠는 일이 아니었다.<</timed>>\
+<<timed 10.5s>>
+
+<div class="pov-badge" style="text-align:center;border:none;letter-spacing:0.4em;margin-top:2em;color:#d4a574;">— END: 빚 —</div><</timed>>\
+<<timed 12s>>
+
+<<link "처음으로">><<run window.SugarCube.Engine.restart()>><</link>>
+<</timed>>
